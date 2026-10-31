@@ -249,3 +249,11 @@ Cloud의 첫 로컬 스냅샷 검사에서는 Windows 임시 short path로의 �
   보고서 갱신 push의 synchronize CI는 새 head의 정상 검증이며 실패 job 재실행이 아니다.
 - 환경 생성·게시, 인증·권한·설정 변경, 배포, main 병합은 에이전트가 수행하지 않았다.
   통합 PR은 Draft로 유지하며 main 병합은 별도 사용자 승인 대상이다.
+
+## 정수 차집합 Phase 2 재개
+
+`5eb289c` 체크포인트에서 재개해 `difference_ranges`와 신규 테스트 20개를 구현했다.
+전체 unittest 77개·명세 doctest 23개가 통과했고,
+[Draft PR #6](https://github.com/JinwooJeon1024/agent_workflow_lab/pull/6)을 생성했다.
+체크포인트→구현 SHA, 실제 CI·독립 리뷰, Phase 2 별도 측정과 한계는
+[Phase 2 실행 보고서](difference-phase2-report.md)에 기록한다. PR은 병합하지 않는다.

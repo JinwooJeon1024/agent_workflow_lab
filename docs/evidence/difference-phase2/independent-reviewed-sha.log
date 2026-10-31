@@ -1,0 +1,7 @@
+COMMAND: "C:\Program Files\Git\cmd\git.exe" -c safe.directory=C:/Users/전진우/Documents/GitHub/agent_workflow_lab rev-parse fc1d8a1ce189b225a431286b98daaa35ec35e84c
+CWD: C:\Users\전진우\Documents\GitHub\agent_workflow_lab
+EXIT: 0
+STDOUT:
+fc1d8a1ce189b225a431286b98daaa35ec35e84c
+
+STDERR:

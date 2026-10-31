@@ -1,0 +1,112 @@
+{
+  "scope": "Packaging only; no implementation, test, CI, verification rerun, or Git index changes.",
+  "logs": [
+    {
+      "original_name": "independent-cli-empty.log",
+      "archive_name": "independent-cli-empty.log.gz",
+      "original_sha256": "5b1241d379c88cc6854493b3285eb5ee164623abe665a5363da7a4efd297c659",
+      "archive_sha256": "de9940f8a6751787dd4d42ffa7ea01e323538cd4c895d1fb818778ae6e399959",
+      "original_bytes": 264,
+      "archive_bytes": 240,
+      "crcrlf_count": 1,
+      "roundtrip_equal": true,
+      "gzip_mtime": 0
+    },
+    {
+      "original_name": "independent-cli-example.log",
+      "archive_name": "independent-cli-example.log.gz",
+      "original_sha256": "b825427293fd51e3df1f8d8f3a892a6893b725a49672414a0b013719554334ae",
+      "archive_sha256": "27a0b368daeed86363be419c71eed08bbb0ce5d05dc881f1dcb566fe8ad6cb4f",
+      "original_bytes": 288,
+      "archive_bytes": 257,
+      "crcrlf_count": 1,
+      "roundtrip_equal": true,
+      "gzip_mtime": 0
+    },
+    {
+      "original_name": "independent-cli-invalid.log",
+      "archive_name": "independent-cli-invalid.log.gz",
+      "original_sha256": "9202395585c68a9bf4cb7dcc46f9cfbc5f52647f9ecd820bab21a449685978b5",
+      "archive_sha256": "91826beb8ebaf0ce2eedc0cb3488aec37563bf67b9e32da1f590300245e3b46e",
+      "original_bytes": 398,
+      "archive_bytes": 304,
+      "crcrlf_count": 2,
+      "roundtrip_equal": true,
+      "gzip_mtime": 0
+    },
+    {
+      "original_name": "independent-doctest.log",
+      "archive_name": "independent-doctest.log.gz",
+      "original_sha256": "0f1ca20b296b3df922aa5fc4fcf291ce6777bccc5533b6b01b841b59336e7f28",
+      "archive_sha256": "d53ac282efadd9fa97dcb71d94e43b9383e2d53fc9f8b3b1ade018c0a4b37371",
+      "original_bytes": 3968,
+      "archive_bytes": 1210,
+      "crcrlf_count": 133,
+      "roundtrip_equal": true,
+      "gzip_mtime": 0
+    },
+    {
+      "original_name": "independent-oracle.log",
+      "archive_name": "independent-oracle.log.gz",
+      "original_sha256": "9a138a5bcc559dcec7c67e17f0098a56f96e03dab88eb3379759075511ed0508",
+      "archive_sha256": "3b1f4f7d819380cd99cc4101b26bfdf24ab6f252c41b5231f99150ca218fa611",
+      "original_bytes": 907,
+      "archive_bytes": 468,
+      "crcrlf_count": 17,
+      "roundtrip_equal": true,
+      "gzip_mtime": 0
+    },
+    {
+      "original_name": "independent-python-version.log",
+      "archive_name": "independent-python-version.log.gz",
+      "original_sha256": "a4ec2cf6f2282f0973dac66b6d362c3440d747193b34b971fe329454c2d7dd9c",
+      "archive_sha256": "af8e9c9cae7b52c933b30bc08aa028e2ff97034084c2f277c57a8d70a98ad9a2",
+      "original_bytes": 197,
+      "archive_bytes": 178,
+      "crcrlf_count": 1,
+      "roundtrip_equal": true,
+      "gzip_mtime": 0
+    },
+    {
+      "original_name": "independent-unit-tests.log",
+      "archive_name": "independent-unit-tests.log.gz",
+      "original_sha256": "6c39fb6a4089c0cc8c80035b88bf4c2ec72e8fdee032f9063efd00e00dd12914",
+      "archive_sha256": "64c75e0eb94061776e01583f75c5918ffecfd857c7b9370361432a16b7067bc9",
+      "original_bytes": 8931,
+      "archive_bytes": 1421,
+      "crcrlf_count": 82,
+      "roundtrip_equal": true,
+      "gzip_mtime": 0
+    }
+  ],
+  "json_eof_normalization": [
+    {
+      "name": "independent-ci-jobs.json",
+      "before_sha256": "b3f29e1a7d2267c6295b4ce03e6814ebc490fa6be7a9d71013d5dcce9a677556",
+      "after_sha256": "558eadd37ae820a09a23b8371de0b2aa3107540e49a3098534fd098ef3b375b8",
+      "removed_bytes": 1,
+      "json_semantics_equal": true
+    },
+    {
+      "name": "independent-ci-requests.json",
+      "before_sha256": "d278536de10c1d6a9f800a48ffac258c301e047338608b473bef928080b31078",
+      "after_sha256": "14362c94ee4e268e51aa061dc6306bc075a9369bfb14263c174d806ad88f2e5d",
+      "removed_bytes": 1,
+      "json_semantics_equal": true
+    },
+    {
+      "name": "independent-ci-run.json",
+      "before_sha256": "c1628bbe33112ae7153e59aa13eedf913ca39e31d796ebc1fdb85bd4dc1e1d9a",
+      "after_sha256": "fdbf7d03375bb18f05a469628f8c546cbaf72101e98ebe3655ccfef4b5b0ae2c",
+      "removed_bytes": 1,
+      "json_semantics_equal": true
+    },
+    {
+      "name": "independent-ci-steps.json",
+      "before_sha256": "fb993253b29a98d86ddd6cc5b2124f91b116fa726f8b7e91c912444df314689d",
+      "after_sha256": "281f5b46fd9aa9b1b1d1b531c1a9a10faeb5fe8c765b3254c8c1be00da19e48a",
+      "removed_bytes": 1,
+      "json_semantics_equal": true
+    }
+  ]
+}
