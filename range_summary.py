@@ -20,7 +20,7 @@ def coalesce_ranges(values: Iterable[int]) -> list[tuple[int, int]]:
     ranges = []
     start = end = ordered[0]
     for value in ordered[1:]:
-        if value == end:
+        if value == end + 1:
             end = value
         else:
             ranges.append((start, end))
