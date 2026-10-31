@@ -135,3 +135,50 @@ This validates one bounded seeded-defect loop with human environment setup.
 It does not prove zero-human end-to-end automation for arbitrary future specs,
 and no agent is running inside Actions: GitHub Actions executes tests; Codex
 performs the development and review work in its existing execution contexts.
+
+## Local·Cloud 병렬 개발 및 통합 실험 — 2026-11-01
+
+상태: **Local 구현 완료, Cloud 환경 확인 및 결과 제출 대기. 두 변경의 통합 검증은 아직 미완료.**
+이 절은 위의 이전 실험과 별도로 기록한다. 기존 테스트·CI를 재사용하며 새 프레임워크를 도입하지 않는다.
+
+| 담당 | 기준 SHA | 브랜치 | 변경 허용 파일 |
+| --- | --- | --- | --- |
+| Local | `72b655ab542f1e8e552b26306a67b4bb099aad31` | `codex/local-range-format` | `range_summary.py`, `tests/test_range_formatting.py` |
+| Cloud | `72b655ab542f1e8e552b26306a67b4bb099aad31` | `codex/cloud-range-stats` | `range_summary_stats.py`, `tests/test_range_stats.py` |
+| 통합 | 같은 기준에서 Local 결과를 포함 | `codex/parallel-local-cloud` | 두 작업의 파일과 이 기존 보고서 |
+
+Local 결과 SHA: `124ff116479d8f82d2e388739bafdcb9bc69d8f8`. Cloud 시작 브랜치는 기준 SHA로 원격에 생성했으며 결과 커밋은 아직 없다.
+`origin/main`을 실제 fetch한 뒤 로컬 HEAD와 동일함을 확인했다. 작업 시작 시 tracked/untracked 변경은 없었다.
+
+Local Acceptance Criteria:
+- `format_ranges(values: Iterable[int]) -> str`가 기존 `coalesce_ranges()`를 재사용한다.
+- 빈 입력은 빈 문자열, `[3,1,2,2,6]`은 `1-3,6`, `[-3,-2,-1,2]`는 `-3--1,2`를 반환한다.
+- 단일값은 정수 문자열, 범위는 `start-end`, 구분자는 공백 없는 쉼표다.
+- 정렬·중복 제거, 임의 크기 정수, 단일 순회, 입력 보존, 기존 TypeError 계약을 유지한다.
+
+Cloud Acceptance Criteria:
+- 새 모듈의 `summarize_ranges(values: Iterable[int]) -> dict[str, int]`가 기존 `coalesce_ranges()`를 import해 재사용한다.
+- `value_count`(중복 제외 정수 개수), `range_count`(최대 연속 범위 개수) 두 키만 반환한다.
+- 빈 입력은 두 값 모두 0, `[3,1,2,2,6]` 및 `[0,-2,-1,4]`는 각각 4와 2다.
+- 단일·중복·분리·음수·큰 정수, 단일 순회, 입력 보존과 잘못된 원소의 TypeError를 테스트한다. 범위의 정수를 직접 열거하지 않는다.
+- 허용 파일 두 개만 변경·커밋하고 기존 테스트·CI·Local 파일·문서를 수정하지 않는다. 상세 실행 지시는 Draft PR 본문에 보존한다.
+
+실제 Local 검증(Python 3.12.1):
+- 기준 SHA: `python3 -m unittest discover -s tests -v` — 16개, exit 0.
+- Local: `python3 -m unittest discover -s tests -p test_range_formatting.py -v` — 8개, exit 0.
+- Local 전체: `python3 -m unittest discover -s tests -v` — 24개, exit 0.
+- `python3 -m range_summary 3 1 2 2 6` — `[[1, 3], [6, 6]]`, exit 0.
+- `git diff --check` — exit 0. 기존 `tests/test_range_summary.py`와 `.github/workflows/ci.yml`은 변경하지 않았다.
+
+Cloud 연결 상태:
+- 샌드박스 CLI는 `Not signed in`이었으나 기존 사용자 세션의 `codex cloud list --json --limit 5`는 exit 0, `tasks: []`였다.
+- CLI 환경 선택에는 `All Environments (Global)`만 표시돼 제출에 필요한 환경 ID를 확보하지 못했다.
+- 브라우저 도구는 현재 URL을 충분히 확신할 수 없다는 이유로 제어를 종료했다. 이후 UI 입력은 중단했다.
+- 기존 Cloud 환경 ID/링크를 사용자에게 요청했다. 계정·권한·환경 설정을 변경하거나 새 자격 증명을 입력하지 않았다.
+
+측정:
+- 관측 시작: 2026-11-01 00:00:28 KST (2026-10-31 15:00:28 UTC).
+- 최초 요청은 초기 입력 1회로 별도 집계한다. 현재까지 관측된 추가 사람 지시·승인·수동 코드 수정은 0회이며, 환경 ID 질문은 응답 대기 중이다.
+- 실제 Cloud 작업은 제출되지 않아 Local/Cloud 동시 실행 시간과 Cloud 완료 대기 시간은 측정 불가다. 환경 확인 대기는 2026-11-01 00:01:48 KST부터 진행 중이다.
+- 파일 소유권은 분리했지만 아직 통합하지 않았으므로 Git 충돌 수·해결 시간은 미측정이다. 관측되지 않은 사람의 설정 행동은 알 수 없다.
+- 이후 절차: Cloud 결과의 기준·범위·테스트 확인 → 통합 브랜치에 cherry-pick → 전체 테스트 → 실제 PR CI → 통합 SHA 독립 리뷰 → 이 보고서와 Draft PR 갱신. main 병합은 사용자 승인 전 수행하지 않는다.
