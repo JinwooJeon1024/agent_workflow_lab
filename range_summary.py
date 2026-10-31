@@ -9,7 +9,7 @@ def coalesce_ranges(values: Iterable[int]) -> list[tuple[int, int]]:
     """Group distinct built-in integers into consecutive inclusive ranges."""
     unique = set()
     for value in values:
-        if type(value) is not int:
+        if not isinstance(value, int):
             raise TypeError("values must contain only built-in integers")
         unique.add(value)
 
