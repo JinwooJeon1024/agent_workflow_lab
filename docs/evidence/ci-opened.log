@@ -1,0 +1,201 @@
+Python 3.12 tests	Set up job	﻿2026-10-31T12:19:17.1497739Z Current runner version: '2.338.2'
+Python 3.12 tests	Set up job	2026-10-31T12:19:17.1521995Z ##[group]Runner Image Provisioner
+Python 3.12 tests	Set up job	2026-10-31T12:19:17.1522908Z Hosted Compute Agent
+Python 3.12 tests	Set up job	2026-10-31T12:19:17.1523495Z Version: 20261021.618
+Python 3.12 tests	Set up job	2026-10-31T12:19:17.1524212Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+Python 3.12 tests	Set up job	2026-10-31T12:19:17.1524930Z Build Date: 2026-10-21T00:45:21Z
+Python 3.12 tests	Set up job	2026-10-31T12:19:17.1525631Z Worker ID: {8d913059-f5bc-4a9d-bda6-601c5530fbf1}
+Python 3.12 tests	Set up job	2026-10-31T12:19:17.1526373Z Region: westus
+Python 3.12 tests	Set up job	2026-10-31T12:19:17.1526994Z Cloud: Azure
+Python 3.12 tests	Set up job	2026-10-31T12:19:17.1527575Z ##[endgroup]
+Python 3.12 tests	Set up job	2026-10-31T12:19:17.1529305Z ##[group]Operating System
+Python 3.12 tests	Set up job	2026-10-31T12:19:17.1529956Z Ubuntu
+Python 3.12 tests	Set up job	2026-10-31T12:19:17.1530950Z 26.04.1
+Python 3.12 tests	Set up job	2026-10-31T12:19:17.1531523Z LTS
+Python 3.12 tests	Set up job	2026-10-31T12:19:17.1532166Z ##[endgroup]
+Python 3.12 tests	Set up job	2026-10-31T12:19:17.1532726Z ##[group]Runner Image
+Python 3.12 tests	Set up job	2026-10-31T12:19:17.1533299Z Image: ubuntu-26.04
+Python 3.12 tests	Set up job	2026-10-31T12:19:17.1533958Z Version: 20261025.179.1
+Python 3.12 tests	Set up job	2026-10-31T12:19:17.1535033Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261025.179/images/ubuntu/Ubuntu2604-Readme.md
+Python 3.12 tests	Set up job	2026-10-31T12:19:17.1536941Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261025.179
+Python 3.12 tests	Set up job	2026-10-31T12:19:17.1537902Z ##[endgroup]
+Python 3.12 tests	Set up job	2026-10-31T12:19:17.1539138Z ##[group]GITHUB_TOKEN Permissions
+Python 3.12 tests	Set up job	2026-10-31T12:19:17.1541330Z Contents: read
+Python 3.12 tests	Set up job	2026-10-31T12:19:17.1542065Z Metadata: read
+Python 3.12 tests	Set up job	2026-10-31T12:19:17.1542621Z ##[endgroup]
+Python 3.12 tests	Set up job	2026-10-31T12:19:17.1544704Z Secret source: Actions
+Python 3.12 tests	Set up job	2026-10-31T12:19:17.1545677Z Cache mode: write
+Python 3.12 tests	Set up job	2026-10-31T12:19:17.1546391Z Prepare workflow directory
+Python 3.12 tests	Set up job	2026-10-31T12:19:17.1880159Z Prepare all required actions
+Python 3.12 tests	Set up job	2026-10-31T12:19:17.1928457Z Getting action download info
+Python 3.12 tests	Set up job	2026-10-31T12:19:17.5174563Z Download action repository 'actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683' (SHA:11bd71901bbe5b1630ceea73d27597364c9af683)
+Python 3.12 tests	Set up job	2026-10-31T12:19:17.6338697Z Download action repository 'actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+Python 3.12 tests	Set up job	2026-10-31T12:19:17.8007305Z Complete job name: Python 3.12 tests
+Python 3.12 tests	Check out PR merge commit	﻿2026-10-31T12:19:17.8918554Z ##[group]Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:17.8919659Z with:
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:17.8920114Z   persist-credentials: false
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:17.8920924Z   repository: JinwooJeon1024/agent_workflow_lab
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:17.8924717Z   token: ***
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:17.8925154Z   ssh-strict: true
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:17.8925600Z   ssh-user: git
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:17.8926025Z   clean: true
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:17.8926477Z   sparse-checkout-cone-mode: true
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:17.8927012Z   fetch-depth: 1
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:17.8927441Z   fetch-tags: false
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:17.8927881Z   show-progress: true
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:17.8928332Z   lfs: false
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:17.8928742Z   submodules: false
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:17.8929189Z   set-safe-directory: true
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:17.8929958Z ##[endgroup]
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2197395Z Syncing repository: JinwooJeon1024/agent_workflow_lab
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2200129Z ##[group]Getting Git version info
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2201436Z Working directory is '/home/runner/work/agent_workflow_lab/agent_workflow_lab'
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2202730Z [command]/usr/bin/git version
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2242755Z git version 2.56.0
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2268556Z ##[endgroup]
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2298057Z Temporarily overriding HOME='/home/runner/work/_temp/13426441-9d12-4faf-81ba-983145cb1d2a' before making global git config changes
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2314115Z Adding repository directory to the temporary git global config as a safe directory
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2322709Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/agent_workflow_lab/agent_workflow_lab
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2386971Z Deleting the contents of '/home/runner/work/agent_workflow_lab/agent_workflow_lab'
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2391569Z ##[group]Initializing the repository
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2406863Z [command]/usr/bin/git init /home/runner/work/agent_workflow_lab/agent_workflow_lab
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2526488Z hint: Using 'master' as the name for the initial branch. This default branch name
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2530423Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2532554Z hint: to use in all of your new repositories, which will suppress this warning,
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2534347Z hint: call:
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2535273Z hint:
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2536197Z hint: 	git config --global init.defaultBranch <name>
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2537117Z hint:
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2537762Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2538948Z hint: 'development'. The just-created branch can be renamed via this command:
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2539810Z hint:
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2540280Z hint: 	git branch -m <name>
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2541172Z hint:
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2542324Z hint: Disable this message with "git config set advice.defaultBranchName false"
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2544955Z Initialized empty Git repository in /home/runner/work/agent_workflow_lab/agent_workflow_lab/.git/
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2563545Z [command]/usr/bin/git remote add origin https://github.com/JinwooJeon1024/agent_workflow_lab
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2620752Z ##[endgroup]
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2622491Z ##[group]Disabling automatic garbage collection
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2626497Z [command]/usr/bin/git config --local gc.auto 0
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2668506Z ##[endgroup]
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2670321Z ##[group]Setting up auth
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2678002Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.2722505Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.3278001Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.3314396Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.3598360Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.3639235Z ##[endgroup]
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.3640978Z ##[group]Fetching the repository
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.3649458Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +6267401f2443970aafd4ef5dae9257600c71d475:refs/remotes/pull/1/merge
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7358885Z From https://github.com/JinwooJeon1024/agent_workflow_lab
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7361557Z  * [new ref]         6267401f2443970aafd4ef5dae9257600c71d475 -> pull/1/merge
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7366156Z ##[endgroup]
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7367959Z ##[group]Determining the checkout info
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7370423Z ##[endgroup]
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7377506Z [command]/usr/bin/git sparse-checkout disable
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7431466Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7462814Z ##[group]Checking out the ref
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7472282Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/1/merge
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7532313Z Note: switching to 'refs/remotes/pull/1/merge'.
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7533210Z 
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7533778Z You are in 'detached HEAD' state. You can look around, make experimental
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7534812Z changes and commit them, and you can discard any commits you make in this
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7536202Z state without impacting any branches by switching back to a branch.
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7537356Z 
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7538234Z If you want to create a new branch to retain commits you create, you may
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7539981Z do so (now or later) by using -c with the switch command. Example:
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7541203Z 
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7541684Z   git switch -c <new-branch-name>
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7542411Z 
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7542855Z Or undo this operation with:
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7543629Z 
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7543871Z   git switch -
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7544247Z 
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7544707Z Turn off this advice by setting config variable advice.detachedHead to false
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7545327Z 
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7546278Z HEAD is now at 6267401 Merge 27d763df1ab201d640d947a487e79ab0adb7dedd into 9f976bef6bd113824e2590778efdf45c5d3078b5
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7555742Z ##[endgroup]
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7599876Z [command]/usr/bin/git log -1 --format=%H
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7625906Z 6267401f2443970aafd4ef5dae9257600c71d475
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7636866Z ##[group]Removing auth
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7641530Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7675297Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7955762Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7979777Z http.https://github.com/.extraheader
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.7988309Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.8021832Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Python 3.12 tests	Check out PR merge commit	2026-10-31T12:19:18.8289434Z ##[endgroup]
+Python 3.12 tests	Set up Python 3.12	﻿2026-10-31T12:19:18.8595965Z ##[group]Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+Python 3.12 tests	Set up Python 3.12	2026-10-31T12:19:18.8596847Z with:
+Python 3.12 tests	Set up Python 3.12	2026-10-31T12:19:18.8597317Z   python-version: 3.12
+Python 3.12 tests	Set up Python 3.12	2026-10-31T12:19:18.8597839Z   check-latest: false
+Python 3.12 tests	Set up Python 3.12	2026-10-31T12:19:18.8602113Z   token: ***
+Python 3.12 tests	Set up Python 3.12	2026-10-31T12:19:18.8602647Z   update-environment: true
+Python 3.12 tests	Set up Python 3.12	2026-10-31T12:19:18.8603231Z   allow-prereleases: false
+Python 3.12 tests	Set up Python 3.12	2026-10-31T12:19:18.8603779Z   freethreaded: false
+Python 3.12 tests	Set up Python 3.12	2026-10-31T12:19:18.8604278Z ##[endgroup]
+Python 3.12 tests	Set up Python 3.12	2026-10-31T12:19:19.0229798Z ##[group]Installed versions
+Python 3.12 tests	Set up Python 3.12	2026-10-31T12:19:19.0351990Z (node:2416) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+Python 3.12 tests	Set up Python 3.12	2026-10-31T12:19:19.0354850Z (Use `node --trace-deprecation ...` to show where the warning was created)
+Python 3.12 tests	Set up Python 3.12	2026-10-31T12:19:19.0356636Z Successfully set up CPython (3.12.15)
+Python 3.12 tests	Set up Python 3.12	2026-10-31T12:19:19.0358251Z ##[endgroup]
+Python 3.12 tests	Run all unit and CLI tests	﻿2026-10-31T12:19:19.0572811Z ##[group]Run python3 -m unittest discover -s tests -v
+Python 3.12 tests	Run all unit and CLI tests	2026-10-31T12:19:19.0576292Z [36;1mpython3 -m unittest discover -s tests -v[0m
+Python 3.12 tests	Run all unit and CLI tests	2026-10-31T12:19:19.0647636Z shell: /usr/bin/bash -e {0}
+Python 3.12 tests	Run all unit and CLI tests	2026-10-31T12:19:19.0648633Z env:
+Python 3.12 tests	Run all unit and CLI tests	2026-10-31T12:19:19.0649579Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+Python 3.12 tests	Run all unit and CLI tests	2026-10-31T12:19:19.0651910Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+Python 3.12 tests	Run all unit and CLI tests	2026-10-31T12:19:19.0653888Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+Python 3.12 tests	Run all unit and CLI tests	2026-10-31T12:19:19.0655617Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+Python 3.12 tests	Run all unit and CLI tests	2026-10-31T12:19:19.0657394Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+Python 3.12 tests	Run all unit and CLI tests	2026-10-31T12:19:19.0659115Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+Python 3.12 tests	Run all unit and CLI tests	2026-10-31T12:19:19.0660793Z ##[endgroup]
+Python 3.12 tests	Run all unit and CLI tests	2026-10-31T12:19:19.2826288Z test_cli_empty (test_range_summary.CLITests.test_cli_empty) ... ok
+Python 3.12 tests	Run all unit and CLI tests	2026-10-31T12:19:19.3113211Z test_cli_example (test_range_summary.CLITests.test_cli_example) ... ok
+Python 3.12 tests	Run all unit and CLI tests	2026-10-31T12:19:19.3401593Z test_cli_invalid_integer (test_range_summary.CLITests.test_cli_invalid_integer) ... ok
+Python 3.12 tests	Run all unit and CLI tests	2026-10-31T12:19:19.3690502Z test_cli_negatives (test_range_summary.CLITests.test_cli_negatives) ... ok
+Python 3.12 tests	Run all unit and CLI tests	2026-10-31T12:19:19.3694640Z test_arbitrary_size_integers (test_range_summary.CoalesceRangesTests.test_arbitrary_size_integers) ... ok
+Python 3.12 tests	Run all unit and CLI tests	2026-10-31T12:19:19.3697406Z test_consecutive (test_range_summary.CoalesceRangesTests.test_consecutive) ... ok
+Python 3.12 tests	Run all unit and CLI tests	2026-10-31T12:19:19.3699646Z test_duplicates (test_range_summary.CoalesceRangesTests.test_duplicates) ... ok
+Python 3.12 tests	Run all unit and CLI tests	2026-10-31T12:19:19.3702619Z test_empty (test_range_summary.CoalesceRangesTests.test_empty) ... ok
+Python 3.12 tests	Run all unit and CLI tests	2026-10-31T12:19:19.3768974Z test_exhaustive_small_domain (test_range_summary.CoalesceRangesTests.test_exhaustive_small_domain) ... ok
+Python 3.12 tests	Run all unit and CLI tests	2026-10-31T12:19:19.3772464Z test_gaps (test_range_summary.CoalesceRangesTests.test_gaps) ... ok
+Python 3.12 tests	Run all unit and CLI tests	2026-10-31T12:19:19.3776068Z test_input_not_mutated (test_range_summary.CoalesceRangesTests.test_input_not_mutated) ... ok
+Python 3.12 tests	Run all unit and CLI tests	2026-10-31T12:19:19.3778861Z test_invalid_elements (test_range_summary.CoalesceRangesTests.test_invalid_elements) ... ok
+Python 3.12 tests	Run all unit and CLI tests	2026-10-31T12:19:19.3782052Z test_negative_through_zero (test_range_summary.CoalesceRangesTests.test_negative_through_zero) ... ok
+Python 3.12 tests	Run all unit and CLI tests	2026-10-31T12:19:19.3784971Z test_one_shot_iterable (test_range_summary.CoalesceRangesTests.test_one_shot_iterable) ... ok
+Python 3.12 tests	Run all unit and CLI tests	2026-10-31T12:19:19.3787469Z test_single (test_range_summary.CoalesceRangesTests.test_single) ... ok
+Python 3.12 tests	Run all unit and CLI tests	2026-10-31T12:19:19.3790213Z test_unsorted_and_duplicates (test_range_summary.CoalesceRangesTests.test_unsorted_and_duplicates) ... ok
+Python 3.12 tests	Run all unit and CLI tests	2026-10-31T12:19:19.3792348Z 
+Python 3.12 tests	Run all unit and CLI tests	2026-10-31T12:19:19.3793138Z ----------------------------------------------------------------------
+Python 3.12 tests	Run all unit and CLI tests	2026-10-31T12:19:19.3794775Z Ran 16 tests in 0.124s
+Python 3.12 tests	Run all unit and CLI tests	2026-10-31T12:19:19.3795351Z 
+Python 3.12 tests	Run all unit and CLI tests	2026-10-31T12:19:19.3795837Z OK
+Python 3.12 tests	Exercise the documented CLI	﻿2026-10-31T12:19:19.3965006Z ##[group]Run set -euo pipefail
+Python 3.12 tests	Exercise the documented CLI	2026-10-31T12:19:19.3966323Z [36;1mset -euo pipefail[0m
+Python 3.12 tests	Exercise the documented CLI	2026-10-31T12:19:19.3967689Z [36;1mactual="$(python3 -m range_summary 3 1 2 2 6)"[0m
+Python 3.12 tests	Exercise the documented CLI	2026-10-31T12:19:19.3969244Z [36;1mtest "$actual" = '[[1, 3], [6, 6]]'[0m
+Python 3.12 tests	Exercise the documented CLI	2026-10-31T12:19:19.4004318Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+Python 3.12 tests	Exercise the documented CLI	2026-10-31T12:19:19.4005906Z env:
+Python 3.12 tests	Exercise the documented CLI	2026-10-31T12:19:19.4007137Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+Python 3.12 tests	Exercise the documented CLI	2026-10-31T12:19:19.4009122Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+Python 3.12 tests	Exercise the documented CLI	2026-10-31T12:19:19.4011298Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+Python 3.12 tests	Exercise the documented CLI	2026-10-31T12:19:19.4013121Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+Python 3.12 tests	Exercise the documented CLI	2026-10-31T12:19:19.4014963Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+Python 3.12 tests	Exercise the documented CLI	2026-10-31T12:19:19.4016821Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+Python 3.12 tests	Exercise the documented CLI	2026-10-31T12:19:19.4018380Z ##[endgroup]
+Python 3.12 tests	Post Set up Python 3.12	﻿2026-10-31T12:19:19.4589021Z Post job cleanup.
+Python 3.12 tests	Post Set up Python 3.12	2026-10-31T12:19:19.5858532Z (node:2432) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+Python 3.12 tests	Post Set up Python 3.12	2026-10-31T12:19:19.5966596Z (Use `node --trace-deprecation ...` to show where the warning was created)
+Python 3.12 tests	Post Check out PR merge commit	﻿2026-10-31T12:19:19.6275966Z Post job cleanup.
+Python 3.12 tests	Post Check out PR merge commit	2026-10-31T12:19:19.7177830Z [command]/usr/bin/git version
+Python 3.12 tests	Post Check out PR merge commit	2026-10-31T12:19:19.7257090Z git version 2.56.0
+Python 3.12 tests	Post Check out PR merge commit	2026-10-31T12:19:19.7307189Z Temporarily overriding HOME='/home/runner/work/_temp/bb8b8e34-ecaf-4af4-bf58-f07b01efce43' before making global git config changes
+Python 3.12 tests	Post Check out PR merge commit	2026-10-31T12:19:19.7313237Z Adding repository directory to the temporary git global config as a safe directory
+Python 3.12 tests	Post Check out PR merge commit	2026-10-31T12:19:19.7317839Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/agent_workflow_lab/agent_workflow_lab
+Python 3.12 tests	Post Check out PR merge commit	2026-10-31T12:19:19.7361757Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Python 3.12 tests	Post Check out PR merge commit	2026-10-31T12:19:19.7416724Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Python 3.12 tests	Post Check out PR merge commit	2026-10-31T12:19:19.7732333Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Python 3.12 tests	Post Check out PR merge commit	2026-10-31T12:19:19.7772408Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Python 3.12 tests	Complete job	﻿2026-10-31T12:19:19.8281888Z Cleaning up orphan processes
+Python 3.12 tests	Complete job	2026-10-31T12:19:19.8877507Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683, actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

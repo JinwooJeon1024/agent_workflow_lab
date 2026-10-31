@@ -1,0 +1,7 @@
+COMMAND: ["python3", "--version"]
+CWD: /tmp/agent-workflow-independent-review
+EXIT STATUS: 0
+STDOUT:
+Python 3.12.14
+
+STDERR:

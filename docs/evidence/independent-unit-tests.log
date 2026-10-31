@@ -1,0 +1,27 @@
+COMMAND: ["python3", "-m", "unittest", "discover", "-s", "tests", "-v"]
+CWD: /tmp/agent-workflow-independent-review
+EXIT STATUS: 0
+STDOUT:
+
+STDERR:
+test_cli_empty (test_range_summary.CLITests.test_cli_empty) ... ok
+test_cli_example (test_range_summary.CLITests.test_cli_example) ... ok
+test_cli_invalid_integer (test_range_summary.CLITests.test_cli_invalid_integer) ... ok
+test_cli_negatives (test_range_summary.CLITests.test_cli_negatives) ... ok
+test_arbitrary_size_integers (test_range_summary.CoalesceRangesTests.test_arbitrary_size_integers) ... ok
+test_consecutive (test_range_summary.CoalesceRangesTests.test_consecutive) ... ok
+test_duplicates (test_range_summary.CoalesceRangesTests.test_duplicates) ... ok
+test_empty (test_range_summary.CoalesceRangesTests.test_empty) ... ok
+test_exhaustive_small_domain (test_range_summary.CoalesceRangesTests.test_exhaustive_small_domain) ... ok
+test_gaps (test_range_summary.CoalesceRangesTests.test_gaps) ... ok
+test_input_not_mutated (test_range_summary.CoalesceRangesTests.test_input_not_mutated) ... ok
+test_invalid_elements (test_range_summary.CoalesceRangesTests.test_invalid_elements) ... ok
+test_negative_through_zero (test_range_summary.CoalesceRangesTests.test_negative_through_zero) ... ok
+test_one_shot_iterable (test_range_summary.CoalesceRangesTests.test_one_shot_iterable) ... ok
+test_single (test_range_summary.CoalesceRangesTests.test_single) ... ok
+test_unsorted_and_duplicates (test_range_summary.CoalesceRangesTests.test_unsorted_and_duplicates) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.129s
+
+OK

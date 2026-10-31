@@ -1,0 +1,12 @@
+COMMAND: ["git", "diff", "--stat", "main", "a1a32811713f789a8a6907a447a9d3d602e1b4af", "--"]
+CWD: /workspace/agent_workflow_lab
+EXIT STATUS: 0
+STDOUT:
+ .github/workflows/ci.yml    |  31 +++++++++++++
+ README.md                   |  24 ++++++++--
+ docs/spec.md                |  56 ++++++++++++++++++++++
+ range_summary.py            |  40 ++++++++++++++++
+ tests/test_range_summary.py | 111 ++++++++++++++++++++++++++++++++++++++++++++
+ 5 files changed, 257 insertions(+), 5 deletions(-)
+
+STDERR:
