@@ -1,0 +1,268 @@
+[
+  {
+    "label": "python-version",
+    "argv": [
+      "C:\\Users\\전진우\\AppData\\Local\\Programs\\Python\\Python312\\python3.exe",
+      "--version"
+    ],
+    "cwd": "C:\\Users\\전진우\\Documents\\GitHub\\agent_workflow_lab",
+    "started_utc": "2026-10-31T17:13:03.063911+00:00",
+    "finished_utc": "2026-10-31T17:13:03.088372+00:00",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "stdout": "Python 3.12.1\r\n",
+    "stderr": ""
+  },
+  {
+    "label": "reviewed-sha",
+    "argv": [
+      "C:\\Program Files\\Git\\cmd\\git.exe",
+      "-c",
+      "safe.directory=C:/Users/전진우/Documents/GitHub/agent_workflow_lab",
+      "rev-parse",
+      "fc1d8a1ce189b225a431286b98daaa35ec35e84c"
+    ],
+    "cwd": "C:\\Users\\전진우\\Documents\\GitHub\\agent_workflow_lab",
+    "started_utc": "2026-10-31T17:13:03.092375+00:00",
+    "finished_utc": "2026-10-31T17:13:03.133964+00:00",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "stdout": "fc1d8a1ce189b225a431286b98daaa35ec35e84c\n",
+    "stderr": ""
+  },
+  {
+    "label": "ancestry",
+    "argv": [
+      "C:\\Program Files\\Git\\cmd\\git.exe",
+      "-c",
+      "safe.directory=C:/Users/전진우/Documents/GitHub/agent_workflow_lab",
+      "merge-base",
+      "--is-ancestor",
+      "5eb289c2a216dd98a25031b33adb4916c4c7c40a",
+      "fc1d8a1ce189b225a431286b98daaa35ec35e84c"
+    ],
+    "cwd": "C:\\Users\\전진우\\Documents\\GitHub\\agent_workflow_lab",
+    "started_utc": "2026-10-31T17:13:03.134964+00:00",
+    "finished_utc": "2026-10-31T17:13:03.172199+00:00",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "label": "ignored-snapshot",
+    "argv": [
+      "C:\\Program Files\\Git\\cmd\\git.exe",
+      "-c",
+      "safe.directory=C:/Users/전진우/Documents/GitHub/agent_workflow_lab",
+      "check-ignore",
+      "__pycache__/difference-review/snapshot"
+    ],
+    "cwd": "C:\\Users\\전진우\\Documents\\GitHub\\agent_workflow_lab",
+    "started_utc": "2026-10-31T17:13:03.174084+00:00",
+    "finished_utc": "2026-10-31T17:13:03.205604+00:00",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "stdout": "__pycache__/difference-review/snapshot\n",
+    "stderr": ""
+  },
+  {
+    "label": "archive",
+    "argv": [
+      "C:\\Program Files\\Git\\cmd\\git.exe",
+      "-c",
+      "safe.directory=C:/Users/전진우/Documents/GitHub/agent_workflow_lab",
+      "archive",
+      "--format=tar",
+      "--output",
+      "C:\\Users\\전진우\\Documents\\GitHub\\agent_workflow_lab\\__pycache__\\difference-review\\fc1d8a1ce189b225a431286b98daaa35ec35e84c.tar",
+      "fc1d8a1ce189b225a431286b98daaa35ec35e84c"
+    ],
+    "cwd": "C:\\Users\\전진우\\Documents\\GitHub\\agent_workflow_lab",
+    "started_utc": "2026-10-31T17:13:03.206605+00:00",
+    "finished_utc": "2026-10-31T17:13:03.260976+00:00",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "label": "changed-files",
+    "argv": [
+      "C:\\Program Files\\Git\\cmd\\git.exe",
+      "-c",
+      "safe.directory=C:/Users/전진우/Documents/GitHub/agent_workflow_lab",
+      "diff",
+      "--name-status",
+      "5eb289c2a216dd98a25031b33adb4916c4c7c40a",
+      "fc1d8a1ce189b225a431286b98daaa35ec35e84c"
+    ],
+    "cwd": "C:\\Users\\전진우\\Documents\\GitHub\\agent_workflow_lab",
+    "started_utc": "2026-10-31T17:13:03.372055+00:00",
+    "finished_utc": "2026-10-31T17:13:03.406208+00:00",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "stdout": "M\trange_summary.py\nA\ttests/test_range_difference.py\n",
+    "stderr": ""
+  },
+  {
+    "label": "diff-check",
+    "argv": [
+      "C:\\Program Files\\Git\\cmd\\git.exe",
+      "-c",
+      "safe.directory=C:/Users/전진우/Documents/GitHub/agent_workflow_lab",
+      "diff",
+      "--check",
+      "5eb289c2a216dd98a25031b33adb4916c4c7c40a",
+      "fc1d8a1ce189b225a431286b98daaa35ec35e84c"
+    ],
+    "cwd": "C:\\Users\\전진우\\Documents\\GitHub\\agent_workflow_lab",
+    "started_utc": "2026-10-31T17:13:03.408095+00:00",
+    "finished_utc": "2026-10-31T17:13:03.450136+00:00",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "label": "reviewed-diff",
+    "argv": [
+      "C:\\Program Files\\Git\\cmd\\git.exe",
+      "-c",
+      "safe.directory=C:/Users/전진우/Documents/GitHub/agent_workflow_lab",
+      "diff",
+      "5eb289c2a216dd98a25031b33adb4916c4c7c40a",
+      "fc1d8a1ce189b225a431286b98daaa35ec35e84c",
+      "--",
+      "range_summary.py",
+      "tests/test_range_difference.py"
+    ],
+    "cwd": "C:\\Users\\전진우\\Documents\\GitHub\\agent_workflow_lab",
+    "started_utc": "2026-10-31T17:13:03.452097+00:00",
+    "finished_utc": "2026-10-31T17:13:03.490269+00:00",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "stdout": "diff --git a/range_summary.py b/range_summary.py\nindex 58912cb..3629f06 100644\n--- a/range_summary.py\n+++ b/range_summary.py\n@@ -57,6 +57,43 @@ def intersect_ranges(\n     return result\n \n \n+def difference_ranges(\n+    left: Iterable[int], right: Iterable[int],\n+) -> list[tuple[int, int]]:\n+    \"\"\"Return maximal inclusive ranges of integers in left but not right.\n+\n+    Consume and validate each input once, left then right, even if one is empty.\n+    Shared iterator state is not copied. Subtract normalized ranges without\n+    expanding gaps; normalization dominates the O(n log n + m log m) runtime.\n+    \"\"\"\n+    left_ranges = coalesce_ranges(left)\n+    right_ranges = coalesce_ranges(right)\n+    result = []\n+    right_index = 0\n+\n+    for start, end in left_ranges:\n+        while (right_index < len(right_ranges)\n+               and right_ranges[right_index][1] < start):\n+            right_index += 1\n+\n+        while (right_index < len(right_ranges)\n+               and right_ranges[right_index][0] <= end):\n+            right_start, right_end = right_ranges[right_index]\n+            if start < right_start:\n+                result.append((start, right_start - 1))\n+            if right_end >= end:\n+                # Keep this right range: it may also cover later left ranges.\n+                start = end + 1\n+                break\n+            start = right_end + 1\n+            right_index += 1\n+\n+        if start <= end:\n+            result.append((start, end))\n+\n+    return result\n+\n+\n def _format_integer(value: int) -> str:\n     \"\"\"Render an integer without changing Python's global digit limit.\"\"\"\n     try:\ndiff --git a/tests/test_range_difference.py b/tests/test_range_difference.py\nnew file mode 100644\nindex 0000000..8015463\n--- /dev/null\n+++ b/tests/test_range_difference.py\n@@ -0,0 +1,165 @@\n+\"\"\"Acceptance tests for directional difference of two integer iterables.\"\"\"\n+\n+import itertools\n+import unittest\n+\n+from range_summary import difference_ranges\n+\n+\n+class DifferenceRangesTests(unittest.TestCase):\n+    def test_empty_inputs(self):\n+        self.assertEqual(difference_ranges([], []), [])\n+        self.assertEqual(difference_ranges([], [1, 2]), [])\n+        self.assertEqual(difference_ranges([3, 1, 2, 2, 6], []), [(1, 3), (6, 6)])\n+\n+    def test_disjoint_and_adjacent_inputs(self):\n+        for right in ([8, 9], [-2, -1], [0, 4], [-2, 0, 4, 8]):\n+            with self.subTest(right=right):\n+                self.assertEqual(difference_ranges([1, 2, 3], right), [(1, 3)])\n+\n+    def test_direction_matters(self):\n+        self.assertEqual(difference_ranges([1, 2, 3], [2, 3, 4]), [(1, 1)])\n+        self.assertEqual(difference_ranges([2, 3, 4], [1, 2, 3]), [(4, 4)])\n+\n+    def test_identical_values_are_removed(self):\n+        self.assertEqual(difference_ranges([3, 1, 2, 2], [2, 3, 1, 1]), [])\n+\n+    def test_unsorted_duplicates(self):\n+        self.assertEqual(\n+            difference_ranges([6, 3, 2, 1, 2], [2, 8, 2]),\n+            [(1, 1), (3, 3), (6, 6)],\n+        )\n+\n+    def test_negative_values_and_zero(self):\n+        self.assertEqual(\n+            difference_ranges([-3, -2, -1, 0, 2], [-2, 2]),\n+            [(-3, -3), (-1, 0)],\n+        )\n+\n+    def test_single_hole_splits_left_range(self):\n+        self.assertEqual(difference_ranges(range(5), [2]), [(0, 1), (3, 4)])\n+\n+    def test_both_endpoints_removed(self):\n+        self.assertEqual(difference_ranges(range(5), [0, 4]), [(1, 3)])\n+\n+    def test_many_right_ranges_split_one_left_range(self):\n+        self.assertEqual(\n+            difference_ranges(range(-5, 8), [-4, -3, 0, 3, 4, 7]),\n+            [(-5, -5), (-2, -1), (1, 2), (5, 6)],\n+        )\n+\n+    def test_one_right_range_spans_multiple_left_ranges(self):\n+        self.assertEqual(difference_ranges([1, 3, 5], range(7)), [])\n+        self.assertEqual(\n+            difference_ranges([0, 1, 3, 4, 6, 7, 9, 10], range(1, 10)),\n+            [(0, 0), (10, 10)],\n+        )\n+\n+    def test_equal_endpoints_then_later_overlap(self):\n+        self.assertEqual(\n+            difference_ranges([1, 2, 4, 5, 8, 9], [0, 1, 2, 5, 6, 8]),\n+            [(4, 4), (9, 9)],\n+        )\n+\n+    def test_arbitrary_size_integers_and_large_gaps(self):\n+        big = 10**5000\n+        self.assertEqual(\n+            difference_ranges(\n+                [-big, -big + 1, 0, big, big + 1], [-big + 1, big],\n+            ),\n+            [(-big, -big), (0, 0), (big + 1, big + 1)],\n+        )\n+\n+    def test_inputs_not_mutated(self):\n+        left, right = [3, 1, 2, 2, 6], [2, 8]\n+        self.assertEqual(difference_ranges(left, right), [(1, 1), (3, 3), (6, 6)])\n+        self.assertEqual(left, [3, 1, 2, 2, 6])\n+        self.assertEqual(right, [2, 8])\n+\n+    def test_mixed_iterable_types(self):\n+        self.assertEqual(difference_ranges((1, 2, 3, 5), {2, 3, 4}), [(1, 1), (5, 5)])\n+        self.assertEqual(\n+            difference_ranges(range(-2, 3), (v for v in [-1, 0, 4])),\n+            [(-2, -2), (1, 2)],\n+        )\n+\n+    def test_independent_one_shot_inputs_consumed_once_left_then_right(self):\n+        events = []\n+\n+        class Once:\n+            def __init__(self, name, values):\n+                self.name = name\n+                self.values = iter(values)\n+                self.calls = 0\n+\n+            def __iter__(self):\n+                self.calls += 1\n+                if self.calls != 1:\n+                    raise AssertionError(\"input consumed twice\")\n+                events.append(self.name)\n+                return self.values\n+\n+        left = Once(\"left\", [3, 1, 2, 6])\n+        right = Once(\"right\", [2, 8])\n+        self.assertEqual(difference_ranges(left, right), [(1, 1), (3, 3), (6, 6)])\n+        self.assertEqual(events, [\"left\", \"right\"])\n+        self.assertEqual((left.calls, right.calls), (1, 1))\n+        self.assertEqual(list(left.values), [])\n+        self.assertEqual(list(right.values), [])\n+\n+    def test_same_reiterable_collection(self):\n+        values = [3, 1, 2, 2, 7]\n+        self.assertEqual(difference_ranges(values, values), [])\n+        self.assertEqual(values, [3, 1, 2, 2, 7])\n+\n+    def test_shared_iterator_is_consumed_sequentially(self):\n+        values = iter([3, 1, 2, 2, 7])\n+        self.assertEqual(difference_ranges(values, values), [(1, 3), (7, 7)])\n+        self.assertEqual(list(values), [])\n+\n+    def test_invalid_elements_in_either_input_even_if_empty_or_removed(self):\n+        class IntegerSubclass(int):\n+            pass\n+\n+        for invalid in (True, False, 1.0, \"1\", None, IntegerSubclass(1), [], {}):\n+            for other in ([], [9], [1]):\n+                for side in (\"left\", \"right\"):\n+                    with self.subTest(invalid=repr(invalid), other=other, side=side):\n+                        values = iter([1, invalid, 2])\n+                        left, right = (values, other) if side == \"left\" else (other, values)\n+                        with self.assertRaises(TypeError):\n+                            difference_ranges(left, right)\n+\n+    def test_non_iterable_arguments(self):\n+        for invalid in (None, 7, True):\n+            with self.subTest(invalid=invalid):\n+                with self.assertRaises(TypeError):\n+                    difference_ranges(invalid, [])\n+                with self.assertRaises(TypeError):\n+                    difference_ranges([], invalid)\n+\n+    def test_all_small_subsets_against_independent_oracle(self):\n+        domain = tuple(range(-3, 4))\n+        subsets = [\n+            subset for size in range(len(domain) + 1)\n+            for subset in itertools.combinations(domain, size)\n+        ]\n+        for left, right in itertools.product(subsets, repeat=2):\n+            with self.subTest(left=left, right=right):\n+                remaining = set(left) - set(right)\n+                starts = [v for v in domain if v in remaining and v - 1 not in remaining]\n+                ends = [v for v in domain if v in remaining and v + 1 not in remaining]\n+                expected = list(zip(starts, ends))\n+                actual = difference_ranges(\n+                    list(reversed(left)) + list(left),\n+                    list(right) + list(reversed(right)),\n+                )\n+                self.assertEqual(actual, expected)\n+                self.assertIs(type(actual), list)\n+                for interval in actual:\n+                    self.assertIs(type(interval), tuple)\n+                    self.assertTrue(all(type(v) is int for v in interval))\n+\n+\n+if __name__ == \"__main__\":\n+    unittest.main()\n",
+    "stderr": ""
+  },
+  {
+    "label": "base-source",
+    "argv": [
+      "C:\\Program Files\\Git\\cmd\\git.exe",
+      "-c",
+      "safe.directory=C:/Users/전진우/Documents/GitHub/agent_workflow_lab",
+      "show",
+      "5eb289c2a216dd98a25031b33adb4916c4c7c40a:range_summary.py"
+    ],
+    "cwd": "C:\\Users\\전진우\\Documents\\GitHub\\agent_workflow_lab",
+    "started_utc": "2026-10-31T17:13:03.492213+00:00",
+    "finished_utc": "2026-10-31T17:13:03.537164+00:00",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "stdout": "\"\"\"Summarize integers as sorted, maximal inclusive ranges.\"\"\"\n\nimport argparse\nfrom collections.abc import Iterable\nimport json\n\n\ndef coalesce_ranges(values: Iterable[int]) -> list[tuple[int, int]]:\n    \"\"\"Group distinct built-in integers into consecutive inclusive ranges.\"\"\"\n    unique = set()\n    for value in values:\n        if type(value) is not int:\n            raise TypeError(\"values must contain only built-in integers\")\n        unique.add(value)\n\n    ordered = sorted(unique)\n    if not ordered:\n        return []\n\n    ranges = []\n    start = end = ordered[0]\n    for value in ordered[1:]:\n        if value == end + 1:\n            end = value\n        else:\n            ranges.append((start, end))\n            start = end = value\n    ranges.append((start, end))\n    return ranges\n\n\ndef intersect_ranges(\n    left: Iterable[int], right: Iterable[int],\n) -> list[tuple[int, int]]:\n    \"\"\"Return maximal inclusive ranges of integers common to both inputs.\n\n    Consume and validate each input once, left then right, even if one is empty.\n    Inputs sharing iterator state are consumed sequentially, without snapshots.\n    \"\"\"\n    left_ranges = coalesce_ranges(left)\n    right_ranges = coalesce_ranges(right)\n    result = []\n    left_index = right_index = 0\n\n    while left_index < len(left_ranges) and right_index < len(right_ranges):\n        left_start, left_end = left_ranges[left_index]\n        right_start, right_end = right_ranges[right_index]\n        start = max(left_start, right_start)\n        end = min(left_end, right_end)\n        if start <= end:\n            result.append((start, end))\n        if left_end <= right_end:\n            left_index += 1\n        if right_end <= left_end:\n            right_index += 1\n\n    return result\n\n\ndef _format_integer(value: int) -> str:\n    \"\"\"Render an integer without changing Python's global digit limit.\"\"\"\n    try:\n        return str(value)\n    except ValueError:\n        # Each chunk stays below the interpreter's decimal conversion limit.\n        sign = \"-\" if value < 0 else \"\"\n        value = abs(value)\n        chunks = []\n        while value >= 10**9:\n            value, remainder = divmod(value, 10**9)\n            chunks.append(f\"{remainder:09d}\")\n        return sign + str(value) + \"\".join(reversed(chunks))\n\n\ndef format_ranges(values: Iterable[int]) -> str:\n    \"\"\"Render ranges as comma-separated single integers or start-end pairs.\"\"\"\n    return \",\".join(\n        _format_integer(start) if start == end\n        else f\"{_format_integer(start)}-{_format_integer(end)}\"\n        for start, end in coalesce_ranges(values)\n    )\n\n\ndef main() -> None:\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument(\"values\", nargs=\"*\", type=int, help=\"integers to summarize\")\n    args = parser.parse_args()\n    print(json.dumps(coalesce_ranges(args.values)))\n\n\nif __name__ == \"__main__\":\n    main()\n",
+    "stderr": ""
+  },
+  {
+    "label": "unit-tests",
+    "argv": [
+      "C:\\Users\\전진우\\AppData\\Local\\Programs\\Python\\Python312\\python3.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-v"
+    ],
+    "cwd": "C:\\Users\\전진우\\Documents\\GitHub\\agent_workflow_lab\\__pycache__\\difference-review\\fc1d8a1ce189b225a431286b98daaa35ec35e84c",
+    "started_utc": "2026-10-31T17:13:03.543171+00:00",
+    "finished_utc": "2026-10-31T17:13:04.169004+00:00",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "stdout": "",
+    "stderr": "test_all_small_subsets_against_independent_oracle (test_range_difference.DifferenceRangesTests.test_all_small_subsets_against_independent_oracle) ... ok\r\ntest_arbitrary_size_integers_and_large_gaps (test_range_difference.DifferenceRangesTests.test_arbitrary_size_integers_and_large_gaps) ... ok\r\ntest_both_endpoints_removed (test_range_difference.DifferenceRangesTests.test_both_endpoints_removed) ... ok\r\ntest_direction_matters (test_range_difference.DifferenceRangesTests.test_direction_matters) ... ok\r\ntest_disjoint_and_adjacent_inputs (test_range_difference.DifferenceRangesTests.test_disjoint_and_adjacent_inputs) ... ok\r\ntest_empty_inputs (test_range_difference.DifferenceRangesTests.test_empty_inputs) ... ok\r\ntest_equal_endpoints_then_later_overlap (test_range_difference.DifferenceRangesTests.test_equal_endpoints_then_later_overlap) ... ok\r\ntest_identical_values_are_removed (test_range_difference.DifferenceRangesTests.test_identical_values_are_removed) ... ok\r\ntest_independent_one_shot_inputs_consumed_once_left_then_right (test_range_difference.DifferenceRangesTests.test_independent_one_shot_inputs_consumed_once_left_then_right) ... ok\r\ntest_inputs_not_mutated (test_range_difference.DifferenceRangesTests.test_inputs_not_mutated) ... ok\r\ntest_invalid_elements_in_either_input_even_if_empty_or_removed (test_range_difference.DifferenceRangesTests.test_invalid_elements_in_either_input_even_if_empty_or_removed) ... ok\r\ntest_many_right_ranges_split_one_left_range (test_range_difference.DifferenceRangesTests.test_many_right_ranges_split_one_left_range) ... ok\r\ntest_mixed_iterable_types (test_range_difference.DifferenceRangesTests.test_mixed_iterable_types) ... ok\r\ntest_negative_values_and_zero (test_range_difference.DifferenceRangesTests.test_negative_values_and_zero) ... ok\r\ntest_non_iterable_arguments (test_range_difference.DifferenceRangesTests.test_non_iterable_arguments) ... ok\r\ntest_one_right_range_spans_multiple_left_ranges (test_range_difference.DifferenceRangesTests.test_one_right_range_spans_multiple_left_ranges) ... ok\r\ntest_same_reiterable_collection (test_range_difference.DifferenceRangesTests.test_same_reiterable_collection) ... ok\r\ntest_shared_iterator_is_consumed_sequentially (test_range_difference.DifferenceRangesTests.test_shared_iterator_is_consumed_sequentially) ... ok\r\ntest_single_hole_splits_left_range (test_range_difference.DifferenceRangesTests.test_single_hole_splits_left_range) ... ok\r\ntest_unsorted_duplicates (test_range_difference.DifferenceRangesTests.test_unsorted_duplicates) ... ok\r\ntest_arbitrary_size_integers (test_range_formatting.FormatRangesTests.test_arbitrary_size_integers) ... ok\r\ntest_empty (test_range_formatting.FormatRangesTests.test_empty) ... ok\r\ntest_input_not_mutated (test_range_formatting.FormatRangesTests.test_input_not_mutated) ... ok\r\ntest_integers_beyond_decimal_conversion_limit (test_range_formatting.FormatRangesTests.test_integers_beyond_decimal_conversion_limit) ... ok\r\ntest_invalid_elements (test_range_formatting.FormatRangesTests.test_invalid_elements) ... ok\r\ntest_negative_ranges_and_zero (test_range_formatting.FormatRangesTests.test_negative_ranges_and_zero) ... ok\r\ntest_one_shot_iterable (test_range_formatting.FormatRangesTests.test_one_shot_iterable) ... ok\r\ntest_single_and_gapped_values (test_range_formatting.FormatRangesTests.test_single_and_gapped_values) ... ok\r\ntest_unsorted_duplicates_and_consecutive_values (test_range_formatting.FormatRangesTests.test_unsorted_duplicates_and_consecutive_values) ... ok\r\ntest_all_small_subsets_against_independent_oracle (test_range_intersection.IntersectRangesTests.test_all_small_subsets_against_independent_oracle) ... ok\r\ntest_arbitrary_size_integers_and_large_gaps (test_range_intersection.IntersectRangesTests.test_arbitrary_size_integers_and_large_gaps) ... ok\r\ntest_contained_range (test_range_intersection.IntersectRangesTests.test_contained_range) ... ok\r\ntest_disjoint_inputs (test_range_intersection.IntersectRangesTests.test_disjoint_inputs) ... ok\r\ntest_empty_inputs (test_range_intersection.IntersectRangesTests.test_empty_inputs) ... ok\r\ntest_equal_range_ends (test_range_intersection.IntersectRangesTests.test_equal_range_ends) ... ok\r\ntest_gaps_in_one_input_split_the_result (test_range_intersection.IntersectRangesTests.test_gaps_in_one_input_split_the_result) ... ok\r\ntest_independent_one_shot_inputs_consumed_fully_once (test_range_intersection.IntersectRangesTests.test_independent_one_shot_inputs_consumed_fully_once) ... ok\r\ntest_inputs_not_mutated (test_range_intersection.IntersectRangesTests.test_inputs_not_mutated) ... ok\r\ntest_invalid_elements_in_either_input_even_without_overlap (test_range_intersection.IntersectRangesTests.test_invalid_elements_in_either_input_even_without_overlap) ... ok\r\ntest_mixed_iterable_types (test_range_intersection.IntersectRangesTests.test_mixed_iterable_types) ... ok\r\ntest_negative_values_and_zero (test_range_intersection.IntersectRangesTests.test_negative_values_and_zero) ... ok\r\ntest_non_iterable_arguments (test_range_intersection.IntersectRangesTests.test_non_iterable_arguments) ... ok\r\ntest_same_reiterable_collection (test_range_intersection.IntersectRangesTests.test_same_reiterable_collection) ... ok\r\ntest_shared_iterator_is_consumed_sequentially (test_range_intersection.IntersectRangesTests.test_shared_iterator_is_consumed_sequentially) ... ok\r\ntest_single_common_value (test_range_intersection.IntersectRangesTests.test_single_common_value) ... ok\r\ntest_unsorted_duplicates (test_range_intersection.IntersectRangesTests.test_unsorted_duplicates) ... ok\r\ntest_all_duplicates (test_range_stats.RangeStatsTests.test_all_duplicates) ... ok\r\ntest_arbitrary_size_integers_and_large_gaps (test_range_stats.RangeStatsTests.test_arbitrary_size_integers_and_large_gaps) ... ok\r\ntest_delegates_to_existing_coalescer_once (test_range_stats.RangeStatsTests.test_delegates_to_existing_coalescer_once) ... ok\r\ntest_empty (test_range_stats.RangeStatsTests.test_empty) ... ok\r\ntest_example_crossing_zero (test_range_stats.RangeStatsTests.test_example_crossing_zero) ... ok\r\ntest_exhaustive_small_inputs (test_range_stats.RangeStatsTests.test_exhaustive_small_inputs) ... ok\r\ntest_generator (test_range_stats.RangeStatsTests.test_generator) ... ok\r\ntest_input_not_modified (test_range_stats.RangeStatsTests.test_input_not_modified) ... ok\r\ntest_iterable_consumed_once (test_range_stats.RangeStatsTests.test_iterable_consumed_once) ... ok\r\ntest_negative_ranges (test_range_stats.RangeStatsTests.test_negative_ranges) ... ok\r\ntest_non_builtin_integer_elements_rejected (test_range_stats.RangeStatsTests.test_non_builtin_integer_elements_rejected) ... ok\r\ntest_separated_values (test_range_stats.RangeStatsTests.test_separated_values) ... ok\r\ntest_single_value (test_range_stats.RangeStatsTests.test_single_value) ... ok\r\ntest_statistics_from_wide_coalesced_ranges (test_range_stats.RangeStatsTests.test_statistics_from_wide_coalesced_ranges) ... ok\r\ntest_unsorted_example_with_duplicates (test_range_stats.RangeStatsTests.test_unsorted_example_with_duplicates) ... ok\r\ntest_cli_empty (test_range_summary.CLITests.test_cli_empty) ... ok\r\ntest_cli_example (test_range_summary.CLITests.test_cli_example) ... ok\r\ntest_cli_invalid_integer (test_range_summary.CLITests.test_cli_invalid_integer) ... ok\r\ntest_cli_negatives (test_range_summary.CLITests.test_cli_negatives) ... ok\r\ntest_arbitrary_size_integers (test_range_summary.CoalesceRangesTests.test_arbitrary_size_integers) ... ok\r\ntest_consecutive (test_range_summary.CoalesceRangesTests.test_consecutive) ... ok\r\ntest_duplicates (test_range_summary.CoalesceRangesTests.test_duplicates) ... ok\r\ntest_empty (test_range_summary.CoalesceRangesTests.test_empty) ... ok\r\ntest_exhaustive_small_domain (test_range_summary.CoalesceRangesTests.test_exhaustive_small_domain) ... ok\r\ntest_gaps (test_range_summary.CoalesceRangesTests.test_gaps) ... ok\r\ntest_input_not_mutated (test_range_summary.CoalesceRangesTests.test_input_not_mutated) ... ok\r\ntest_invalid_elements (test_range_summary.CoalesceRangesTests.test_invalid_elements) ... ok\r\ntest_negative_through_zero (test_range_summary.CoalesceRangesTests.test_negative_through_zero) ... ok\r\ntest_one_shot_iterable (test_range_summary.CoalesceRangesTests.test_one_shot_iterable) ... ok\r\ntest_single (test_range_summary.CoalesceRangesTests.test_single) ... ok\r\ntest_unsorted_and_duplicates (test_range_summary.CoalesceRangesTests.test_unsorted_and_duplicates) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 77 tests in 0.398s\r\n\r\nOK\r\n"
+  },
+  {
+    "label": "doctest",
+    "argv": [
+      "C:\\Users\\전진우\\AppData\\Local\\Programs\\Python\\Python312\\python3.exe",
+      "-m",
+      "doctest",
+      "-v",
+      "docs/spec.md"
+    ],
+    "cwd": "C:\\Users\\전진우\\Documents\\GitHub\\agent_workflow_lab\\__pycache__\\difference-review\\fc1d8a1ce189b225a431286b98daaa35ec35e84c",
+    "started_utc": "2026-10-31T17:13:04.171006+00:00",
+    "finished_utc": "2026-10-31T17:13:04.302603+00:00",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "stdout": "Trying:\r\n    from range_summary import difference_ranges\r\nExpecting nothing\r\nok\r\nTrying:\r\n    cases = (\r\n        ([], [], []),\r\n        ([], [1], []),\r\n        ([3, 1, 2, 2, 6], [], [(1, 3), (6, 6)]),\r\n        ([1, 2], [8], [(1, 2)]),\r\n        ([1, 2, 3], [1, 2, 3], []),\r\n        ([0, 1, 2, 3, 4], [2], [(0, 1), (3, 4)]),\r\n        ([0, 1, 2, 3, 4], [0, 4], [(1, 3)]),\r\n        ([-3, -2, -1, 0, 2], [-2, 2], [(-3, -3), (-1, 0)]),\r\n        ([1, 3, 5], [0, 1, 2, 3, 4, 5, 6], []),\r\n    )\r\nExpecting nothing\r\nok\r\nTrying:\r\n    assert all(difference_ranges(a, b) == expected for a, b, expected in cases)\r\nExpecting nothing\r\nok\r\nTrying:\r\n    a, b = [3, 1, 2, 2, 6], [2, 8]\r\nExpecting nothing\r\nok\r\nTrying:\r\n    before = (a.copy(), b.copy())\r\nExpecting nothing\r\nok\r\nTrying:\r\n    assert difference_ranges(a, b) == [(1, 1), (3, 3), (6, 6)]\r\nExpecting nothing\r\nok\r\nTrying:\r\n    assert difference_ranges(a, a) == [] and (a, b) == before\r\nExpecting nothing\r\nok\r\nTrying:\r\n    class Once:\r\n        def __init__(self, values):\r\n            self.values = iter(values)\r\n            self.calls = 0\r\n        def __iter__(self):\r\n            self.calls += 1\r\n            assert self.calls == 1, \"input consumed twice\"\r\n            return self.values\r\nExpecting nothing\r\nok\r\nTrying:\r\n    a, b = Once([3, 1, 2, 6]), Once([2, 8])\r\nExpecting nothing\r\nok\r\nTrying:\r\n    assert difference_ranges(a, b) == [(1, 1), (3, 3), (6, 6)]\r\nExpecting nothing\r\nok\r\nTrying:\r\n    assert (a.calls, b.calls) == (1, 1) and list(a.values) == list(b.values) == []\r\nExpecting nothing\r\nok\r\nTrying:\r\n    shared = iter([3, 1, 2])\r\nExpecting nothing\r\nok\r\nTrying:\r\n    assert difference_ranges(shared, shared) == [(1, 3)]\r\nExpecting nothing\r\nok\r\nTrying:\r\n    big = 10**5000\r\nExpecting nothing\r\nok\r\nTrying:\r\n    assert difference_ranges([-big, -big + 1, big, big + 1], [-big + 1, big]) == [(-big, -big), (big + 1, big + 1)]\r\nExpecting nothing\r\nok\r\nTrying:\r\n    class IntegerSubclass(int):\r\n        pass\r\nExpecting nothing\r\nok\r\nTrying:\r\n    for invalid in (True, False, 1.0, \"1\", None, IntegerSubclass(1), [], {}):\r\n        for other in ([], [9], [1]):\r\n            for a, b in (([1, invalid, 2], other), (other, [1, invalid, 2])):\r\n                try:\r\n                    difference_ranges(a, b)\r\n                except TypeError:\r\n                    pass\r\n                else:\r\n                    raise AssertionError(\"invalid element accepted\")\r\nExpecting nothing\r\nok\r\nTrying:\r\n    for a, b in ((None, []), ([], None), (7, []), ([], 7)):\r\n        try:\r\n            difference_ranges(a, b)\r\n        except TypeError:\r\n            pass\r\n        else:\r\n            raise AssertionError(\"non-iterable argument accepted\")\r\nExpecting nothing\r\nok\r\nTrying:\r\n    from itertools import combinations, product\r\nExpecting nothing\r\nok\r\nTrying:\r\n    domain = tuple(range(-2, 3))\r\nExpecting nothing\r\nok\r\nTrying:\r\n    subsets = [s for size in range(6) for s in combinations(domain, size)]\r\nExpecting nothing\r\nok\r\nTrying:\r\n    def oracle(a, b):\r\n        remaining = {v for v in domain if v in a and v not in b}\r\n        starts = [v for v in domain if v in remaining and v - 1 not in remaining]\r\n        ends = [v for v in domain if v in remaining and v + 1 not in remaining]\r\n        return list(zip(starts, ends))\r\nExpecting nothing\r\nok\r\nTrying:\r\n    assert all(difference_ranges(list(reversed(a)) + list(a), list(reversed(b)) + list(b)) == oracle(a, b) for a, b in product(subsets, repeat=2))\r\nExpecting nothing\r\nok\r\n1 items passed all tests:\r\n  23 tests in spec.md\r\n23 tests in 1 items.\r\n23 passed and 0 failed.\r\nTest passed.\r\n",
+    "stderr": ""
+  },
+  {
+    "label": "cli-example",
+    "argv": [
+      "C:\\Users\\전진우\\AppData\\Local\\Programs\\Python\\Python312\\python3.exe",
+      "-m",
+      "range_summary",
+      "3",
+      "1",
+      "2",
+      "2",
+      "6"
+    ],
+    "cwd": "C:\\Users\\전진우\\Documents\\GitHub\\agent_workflow_lab\\__pycache__\\difference-review\\fc1d8a1ce189b225a431286b98daaa35ec35e84c",
+    "started_utc": "2026-10-31T17:13:04.304617+00:00",
+    "finished_utc": "2026-10-31T17:13:04.372710+00:00",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "stdout": "[[1, 3], [6, 6]]\r\n",
+    "stderr": ""
+  },
+  {
+    "label": "cli-empty",
+    "argv": [
+      "C:\\Users\\전진우\\AppData\\Local\\Programs\\Python\\Python312\\python3.exe",
+      "-m",
+      "range_summary"
+    ],
+    "cwd": "C:\\Users\\전진우\\Documents\\GitHub\\agent_workflow_lab\\__pycache__\\difference-review\\fc1d8a1ce189b225a431286b98daaa35ec35e84c",
+    "started_utc": "2026-10-31T17:13:04.375707+00:00",
+    "finished_utc": "2026-10-31T17:13:04.439351+00:00",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "stdout": "[]\r\n",
+    "stderr": ""
+  },
+  {
+    "label": "cli-invalid",
+    "argv": [
+      "C:\\Users\\전진우\\AppData\\Local\\Programs\\Python\\Python312\\python3.exe",
+      "-m",
+      "range_summary",
+      "not-an-integer"
+    ],
+    "cwd": "C:\\Users\\전진우\\Documents\\GitHub\\agent_workflow_lab\\__pycache__\\difference-review\\fc1d8a1ce189b225a431286b98daaa35ec35e84c",
+    "started_utc": "2026-10-31T17:13:04.443307+00:00",
+    "finished_utc": "2026-10-31T17:13:04.509671+00:00",
+    "exit_code": 2,
+    "expected_exit_code": 2,
+    "stdout": "",
+    "stderr": "usage: range_summary.py [-h] [values ...]\r\nrange_summary.py: error: argument values: invalid int value: 'not-an-integer'\r\n"
+  },
+  {
+    "label": "oracle",
+    "argv": [
+      "C:\\Users\\전진우\\AppData\\Local\\Programs\\Python\\Python312\\python3.exe",
+      "C:\\Users\\전진우\\Documents\\GitHub\\agent_workflow_lab\\docs\\evidence\\difference-phase2\\independent-verify.py",
+      "--oracle",
+      "C:\\Users\\전진우\\Documents\\GitHub\\agent_workflow_lab\\__pycache__\\difference-review\\fc1d8a1ce189b225a431286b98daaa35ec35e84c"
+    ],
+    "cwd": "C:\\Users\\전진우\\Documents\\GitHub\\agent_workflow_lab\\__pycache__\\difference-review\\fc1d8a1ce189b225a431286b98daaa35ec35e84c",
+    "started_utc": "2026-10-31T17:13:04.511639+00:00",
+    "finished_utc": "2026-10-31T17:13:09.321912+00:00",
+    "exit_code": 0,
+    "expected_exit_code": 0,
+    "stdout": "{\r\n  \"seed\": 20261101,\r\n  \"counts\": {\r\n    \"directed\": 15,\r\n    \"exhaustive_subset_pairs\": 262144,\r\n    \"seeded_random_pairs\": 12000,\r\n    \"translated_pairs\": 2000,\r\n    \"dense_stress\": 2,\r\n    \"consumption_contracts\": 3,\r\n    \"invalid_elements\": 66,\r\n    \"invalid_arguments\": 10,\r\n    \"iteration_exceptions\": 2,\r\n    \"normalization_reuse\": 1,\r\n    \"huge_normalized_span\": 1\r\n  },\r\n  \"total\": 276244\r\n}\r\n",
+    "stderr": ""
+  }
+]

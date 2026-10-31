@@ -1,0 +1,80 @@
+{
+  "python": "3.12.1 (tags/v3.12.1:2305ca5, Dec  7 2023, 22:03:25) [MSC v.1937 64 bit (AMD64)]",
+  "timestamp_utc": "2026-10-31T17:11:39.418216+00:00",
+  "checks": [
+    {
+      "check": "doctest",
+      "command": [
+        "C:\\Users\\\uc804\uc9c4\uc6b0\\AppData\\Local\\Programs\\Python\\Python312\\python3.exe",
+        "-m",
+        "doctest",
+        "-v",
+        "docs/spec.md"
+      ],
+      "exit_code": 0,
+      "valid": true
+    },
+    {
+      "check": "unittest",
+      "command": [
+        "C:\\Users\\\uc804\uc9c4\uc6b0\\AppData\\Local\\Programs\\Python\\Python312\\python3.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "valid": true
+    },
+    {
+      "check": "cli",
+      "command": [
+        "C:\\Users\\\uc804\uc9c4\uc6b0\\AppData\\Local\\Programs\\Python\\Python312\\python3.exe",
+        "-m",
+        "range_summary",
+        "3",
+        "1",
+        "2",
+        "2",
+        "6"
+      ],
+      "exit_code": 0,
+      "valid": true
+    },
+    {
+      "check": "diff-check",
+      "command": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-c",
+        "safe.directory=C:/Users/\uc804\uc9c4\uc6b0/Documents/GitHub/agent_workflow_lab",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "valid": true
+    },
+    {
+      "check": "preserved-files",
+      "command": [
+        "C:\\Program Files\\Git\\cmd\\git.exe",
+        "-c",
+        "safe.directory=C:/Users/\uc804\uc9c4\uc6b0/Documents/GitHub/agent_workflow_lab",
+        "diff",
+        "--exit-code",
+        "5eb289c2a216dd98a25031b33adb4916c4c7c40a",
+        "--",
+        "docs/spec.md",
+        ".github/workflows/ci.yml",
+        "range_summary_stats.py",
+        "tests/test_range_summary.py",
+        "tests/test_range_formatting.py",
+        "tests/test_range_intersection.py",
+        "tests/test_range_stats.py"
+      ],
+      "exit_code": 0,
+      "valid": true
+    }
+  ]
+}

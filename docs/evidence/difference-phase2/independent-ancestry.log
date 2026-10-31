@@ -1,0 +1,6 @@
+COMMAND: "C:\Program Files\Git\cmd\git.exe" -c safe.directory=C:/Users/전진우/Documents/GitHub/agent_workflow_lab merge-base --is-ancestor 5eb289c2a216dd98a25031b33adb4916c4c7c40a fc1d8a1ce189b225a431286b98daaa35ec35e84c
+CWD: C:\Users\전진우\Documents\GitHub\agent_workflow_lab
+EXIT: 0
+STDOUT:
+
+STDERR:
