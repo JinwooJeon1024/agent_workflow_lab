@@ -57,6 +57,43 @@ def intersect_ranges(
     return result
 
 
+def difference_ranges(
+    left: Iterable[int], right: Iterable[int],
+) -> list[tuple[int, int]]:
+    """Return maximal inclusive ranges of integers in left but not right.
+
+    Consume and validate each input once, left then right, even if one is empty.
+    Shared iterator state is not copied. Subtract normalized ranges without
+    expanding gaps; normalization dominates the O(n log n + m log m) runtime.
+    """
+    left_ranges = coalesce_ranges(left)
+    right_ranges = coalesce_ranges(right)
+    result = []
+    right_index = 0
+
+    for start, end in left_ranges:
+        while (right_index < len(right_ranges)
+               and right_ranges[right_index][1] < start):
+            right_index += 1
+
+        while (right_index < len(right_ranges)
+               and right_ranges[right_index][0] <= end):
+            right_start, right_end = right_ranges[right_index]
+            if start < right_start:
+                result.append((start, right_start - 1))
+            if right_end >= end:
+                # Keep this right range: it may also cover later left ranges.
+                start = end + 1
+                break
+            start = right_end + 1
+            right_index += 1
+
+        if start <= end:
+            result.append((start, end))
+
+    return result
+
+
 def _format_integer(value: int) -> str:
     """Render an integer without changing Python's global digit limit."""
     try:
