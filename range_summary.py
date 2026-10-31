@@ -29,6 +29,34 @@ def coalesce_ranges(values: Iterable[int]) -> list[tuple[int, int]]:
     return ranges
 
 
+def intersect_ranges(
+    left: Iterable[int], right: Iterable[int],
+) -> list[tuple[int, int]]:
+    """Return maximal inclusive ranges of integers common to both inputs.
+
+    Consume and validate each input once, left then right, even if one is empty.
+    Inputs sharing iterator state are consumed sequentially, without snapshots.
+    """
+    left_ranges = coalesce_ranges(left)
+    right_ranges = coalesce_ranges(right)
+    result = []
+    left_index = right_index = 0
+
+    while left_index < len(left_ranges) and right_index < len(right_ranges):
+        left_start, left_end = left_ranges[left_index]
+        right_start, right_end = right_ranges[right_index]
+        start = max(left_start, right_start)
+        end = min(left_end, right_end)
+        if start <= end:
+            result.append((start, end))
+        if left_end <= right_end:
+            left_index += 1
+        if right_end <= left_end:
+            right_index += 1
+
+    return result
+
+
 def _format_integer(value: int) -> str:
     """Render an integer without changing Python's global digit limit."""
     try:
