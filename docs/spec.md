@@ -54,3 +54,28 @@ Report invisible configuration actions as unknown rather than assuming zero.
 Do not change repository permissions/settings, purchase services, merge, deploy,
 or enter credentials. Those operations need human approval. Git pushes and a
 Draft PR for this experiment are part of the requested work.
+
+## Integer-set intersection API
+
+`range_summary.intersect_ranges(left, right)` accepts two finite iterables of
+built-in integers and returns their common distinct values as a sorted list of
+maximal, inclusive `(start, end)` tuples. Inputs contain integers, not interval
+pairs. For example, `[6, 3, 2, 1, 2]` and `[2, 3, 4, 6, 6]` return
+`[(2, 3), (6, 6)]`; empty or disjoint sets return `[]`.
+
+Acceptance criteria:
+
+1. Support duplicates, arbitrary ordering, negative values, zero, and
+   arbitrary-size integers without expanding intervals or gaps.
+2. Consume each input once, left then right, without mutating caller collections.
+   Independent one-shot inputs are supported. If arguments share an iterator's
+   consumption state, no separate snapshot is made: passing the same iterator
+   twice leaves the second input empty. A shared list remains re-iterable.
+3. Reject every non-built-in-int element with `TypeError`, including booleans
+   and int subclasses, even when the other input is empty or disjoint.
+   After an invalid element raises, remaining input need not be consumed.
+4. Reuse `coalesce_ranges` for both inputs before intersecting normalized ranges.
+   Expected time is O(n log n + m log m), space O(n+m).
+5. Preserve existing APIs, CLI JSON output, tests, and CI. The existing unittest
+   discovery must pass, including boundary cases and an independent small-domain
+   oracle for the new API. No new dependencies are required.
