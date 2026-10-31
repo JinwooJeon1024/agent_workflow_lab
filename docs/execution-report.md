@@ -2,11 +2,20 @@
 
 ## Status
 
-**Local implementation, real failure, bounded repair, and tests verified.**
-The end-to-end goal also requires a real Draft PR and a successful GitHub Actions
-run. Those must not be inferred from local results. **End-to-end acceptance remains incomplete**: the attempted Draft PR creation
-was blocked by GitHub API egress policy; no Actions success has been verified.
-Independent review completed successfully in a separate Codex context.
+**The controlled experiment has a real Draft PR and a successful GitHub Actions
+run, in addition to the local failure/repair and independent review.**
+
+- [Draft PR #1](https://github.com/JinwooJeon1024/agent_workflow_lab/pull/1), open and draft.
+- [Verified pull_request CI run](https://github.com/JinwooJeon1024/agent_workflow_lab/actions/runs/41200564988), **success**.
+- Tested PR head: `27d763df1ab201d640d947a487e79ab0adb7dedd`.
+- Standard GitHub-hosted `ubuntu-latest` runner; actual image Ubuntu 26.04.1.
+- All 16 unittest methods executed and passed; CLI smoke step also passed.
+
+This report update adds evidence/documentation only. Its push triggers another
+`synchronize` run. The final PR head, its matching final run, and post-CI
+independent verification are recorded in the PR description after that run
+finishes. The historical successful run above remains immutable evidence;
+it is not silently represented as a run of a later commit.
 
 ## Scope and command evidence
 
@@ -64,77 +73,65 @@ changed. Its report explicitly distinguishes local/static review from remote CI.
 The final changes after the reviewed commit contain evidence and documentation
 only; the implementation, tests, and workflow are identical to the reviewed SHA.
 
-## External evidence and limitations
+## External evidence: initial blocker and successful resumption
 
-The initial GitHub API request was blocked by the cloud egress proxy at CONNECT
-with HTTP 403; it did not reach a GitHub response. Existing injected authentication
-was retained. No credentials were requested, printed, stored, or added to this
-repository. Git access succeeded independently of GitHub API access.
+The first API request and Draft PR creation were genuinely blocked at the cloud
+proxy with HTTP 403. [Original creation error](evidence/pr-create.log) preserves
+that failed attempt. Git transport was working. A minimal API-domain draft was
+saved at that time; saving did not apply it. The user subsequently reported
+publishing the environment. This task resumed in a new environment, whose
+observed network policy was `unrestricted` and enforced. The agent did not
+reapply old configuration or publish another environment version.
 
-The environment draft's custom network list was empty. A draft adding only
-`api.github.com` was successfully saved; package-manager presets were preserved.
-This does not apply the policy or publish the environment. The tool reported
-`requires_publish: true`: the user must review/save in environment settings and
-publish the environment for that configuration workflow. No repository or token
-permissions were changed.
+Existing injected authentication was reused; no new credentials were requested,
+printed, copied, or stored in the repository. GitHub's API confirmed a public,
+non-archived repository with default branch `main`. No repository settings,
+token permissions, branch protection, or runner configuration were changed.
 
-The actual Draft PR command was executed once after the reviewed code and
-evidence were pushed:
+| Resumed stage | Actual command | Actual result |
+| --- | --- | --- |
+| API recheck | `gh api repos/JinwooJeon1024/agent_workflow_lab --jq '{full_name,visibility,default_branch,permissions,archived}'` | Exit 0; public, non-archived, default branch main. |
+| Duplicate guard | `gh pr list --repo JinwooJeon1024/agent_workflow_lab --head codex/minimal-dev-loop --base main --state all --json number,url,state,isDraft,headRefOid` | Exit 0, `[]`; no existing PR. |
+| Restored-instance validation | `python3 -m unittest discover -s tests -v`; `git diff --exit-code a1a32811713f789a8a6907a447a9d3d602e1b4af HEAD -- range_summary.py tests .github/workflows/ci.yml` | Both exit 0; 16 tests pass; source, tests, and workflow match independent review. [Log](evidence/restored-green.log). |
+| Actual Draft PR creation | `gh pr create --repo JinwooJeon1024/agent_workflow_lab --base main --head codex/minimal-dev-loop --draft --title "Validate a minimal Codex development loop with Python tests" --body-file /tmp/agent-workflow-evidence/resumed-pr-body.md` | Exit 0; [PR #1](https://github.com/JinwooJeon1024/agent_workflow_lab/pull/1). [Creation output](evidence/pr-created.log). |
+| PR state and checks | `gh pr view 1 --repo JinwooJeon1024/agent_workflow_lab --json number,url,state,isDraft,headRefOid,baseRefName,statusCheckRollup` | Exit 0; open, draft, base main; actual check present. |
+| Automatic trigger inspection | `gh run list --repo JinwooJeon1024/agent_workflow_lab --branch codex/minimal-dev-loop --event pull_request --limit 5 --json databaseId,url,status,conclusion,event,headSha,workflowName,createdAt` | Exit 0; run 41200564988 automatically started for PR head 27d763d. No manual dispatch. |
+| CI outcome and steps | `gh run view 41200564988 --repo JinwooJeon1024/agent_workflow_lab --json databaseId,url,status,conclusion,event,headSha,jobs,createdAt,updatedAt` | Exit 0; completed/success, pull_request, exact head SHA, all job/step conclusions success. [JSON](evidence/ci-opened.json). |
+| Real test output | `gh run view 41200564988 --repo JinwooJeon1024/agent_workflow_lab --log` | Exit 0; `Ran 16 tests`, `OK`; CLI assertion step success. [Complete log](evidence/ci-opened.log). |
+| Actual runner | `gh api repos/JinwooJeon1024/agent_workflow_lab/actions/jobs/124535369827 --jq '{id,status,conclusion,runner_name,runner_group_name,labels,head_sha,html_url}'` | Exit 0; runner group GitHub Actions; label ubuntu-latest; success. [JSON](evidence/ci-opened-runner.json). |
 
-```sh
-gh pr create --repo JinwooJeon1024/agent_workflow_lab \
-  --base main --head codex/minimal-dev-loop --draft \
-  --title "Validate a minimal Codex development loop with Python tests" \
-  --body-file /tmp/agent-workflow-evidence/draft-pr-body.md
-```
+Both the unittest and documented CLI steps completed successfully on the real
+runner. CI used Python 3.12.15; local testing used Python 3.12.14, both within the
+specified Python 3.12 release. No failed CI reruns or code-repair retries were
+needed after the original one-line repair. The subsequent documentation push
+is a normal new PR synchronize event, not a rerun of a failed job.
 
-Result: **exit 1**, `Post "https://api.github.com/graphql": Forbidden`.
-The command's exit status was preserved through `tee` with `PIPESTATUS[0]`.
-[Original creation error](evidence/pr-create.log) and the
-[prepared PR body](draft-pr-body.md) are retained. There was no successful PR
-creation response. The command has not been retried without a policy change.
-
-The standard retry budget remains at one code repair out of three. There were
-no CI reruns, merge, or deployment. CI run inspection was not possible without
-a PR and API access.
-
-Draft PR and actual Actions result: **blocked, not complete**. No PR URL, run URL,
-remote CI success, GitHub approval, or branch-protection enforcement is claimed.
-The workflow uses ordinary `pull_request`, not `pull_request_target`; untrusted
-PR code runs with a read-only token and without application secrets. Neither
-CI nor this experiment merges or deploys anything.
+The independent code review in the repository remains scoped to its stated
+immutable SHA; all source/tests/workflow changes after it are empty. The PR
+includes final post-CI verification separately. No formal approval from another
+GitHub identity, branch-protection enforcement, merge, or deployment is claimed.
 
 ## Human intervention accounting
 
-Counting begins after the user's explicit execution request. That request is
-one initial human input, not a subsequent intervention.
+Counting begins after the original execution request. That request is one
+initial input, separate from subsequent interventions.
 
-- Additional human chat instructions/approvals observed so far: **0**.
+- Additional user chat messages: **3** (status check, publication/wait update,
+  and the current resume request).
 - Human code edits or manual bug fixes observed: **0**.
-- Independent review: Codex in a separate context, not a human reviewer or a
-  separate GitHub identity's formal approval.
-- Environment UI actions are not directly visible to the agent and cannot be
-  counted as zero without evidence. **At least one external configuration action
-  is presently required** to unblock the GitHub API; completion is unverified.
-- No merge, deployment, paid-service operation, or important permission change
-  has been performed. Public-experiment status was supplied by the user; GitHub
-  API visibility/settings inspection was blocked, and settings were not altered.
+- User-reported environment publication: **at least 1**. Exact environment UI
+  action count cannot be independently observed and is not asserted to be zero.
+  This action and the message reporting it are described separately rather than
+  claiming an exact total of distinct human interventions.
+- Codex performed implementation, failure diagnosis, repair, testing, Git pushes,
+  Draft PR creation, CI inspection, and separate-context code review.
+- The reviewer was another Codex context on the same managed environment, not
+  another VM or human GitHub approver.
+- No agent-driven environment publication, important permission change, purchase,
+  merge, or deployment occurred during resumption. The user published the
+  environment; API access was verified afterward.
 
-This experiment demonstrates the specific local seeded-defect repair only.
-It does not yet demonstrate the requested full development loop or an unattended
-system that handles future tasks without a Codex session.
-
-## Resume after the required external change
-
-After the saved API-domain policy has been applied, verify the specific operation
-again with `gh api repos/JinwooJeon1024/agent_workflow_lab`. Reuse existing injected
-authentication. If this reaches GitHub but fails authorization, diagnose the
-response before requesting a credential or permission. Do not print tokens.
-
-Then use the exact draft command above, with the durable body path
-`docs/draft-pr-body.md` if `/tmp` was not retained. Before retrying creation, check
-for an existing PR for this head/base so a lost response cannot create duplicates.
-Once a PR exists, use `gh pr checks` / `gh run view` to verify the real
-`pull_request` run, its head SHA, conclusion, jobs, steps, and executed test count.
-Do not label a queued/pending/skipped run as passed. Record the actual URLs and
-results here and in the Draft PR. Never merge or deploy as part of this task.
+This validates one bounded seeded-defect loop with human environment setup.
+It does not prove zero-human end-to-end automation for arbitrary future specs,
+and no agent is running inside Actions: GitHub Actions executes tests; Codex
+performs the development and review work in its existing execution contexts.

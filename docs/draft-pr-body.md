@@ -9,8 +9,8 @@ Validation:
 
 Evidence is committed in `docs/execution-report.md` and `docs/evidence/`, including the compressed complete failing log, passing log, test hash, exact commit IDs, reviewer commands, and independent review.
 
-Remote validation is a separate completion gate: actual Actions run URL, tested head SHA, event, job/step results, and conclusion must be confirmed after this Draft PR is created. Local results are not a claim of CI success.
+Actual remote validation: [Draft PR #1](https://github.com/JinwooJeon1024/agent_workflow_lab/pull/1) created, and [pull_request Actions run 41200564988](https://github.com/JinwooJeon1024/agent_workflow_lab/actions/runs/41200564988) **passed** for head `27d763df1ab201d640d947a487e79ab0adb7dedd`. The GitHub-hosted ubuntu-latest runner executed all 16 tests and the CLI assertion successfully. Final documentation-update head/run and independent post-CI verification are added to the live PR description after its synchronize run completes.
 
-Human interventions after the execution request: zero additional chat instructions or manual code repairs observed. Environment UI changes are not directly observable; GitHub API access initially required an environment network-policy action. No permission changes, paid services, merge, deployment, or custom orchestrator.
+Human involvement after the original execution request: three follow-up user messages observed, at least one environment publication reported by the user, and zero manual code repairs observed. Exact environment UI actions are not directly observable. API access is now verified in the newly published environment. No permission changes, paid services, merge, deployment, or custom orchestrator.
 
 This is one Codex-directed seeded-defect experiment, not an agent running inside Actions or proof of unattended future tasks. Keep this PR in draft and unmerged.

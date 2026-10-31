@@ -14,12 +14,12 @@
   "exhaustive_inputs_within_one_test": 781,
   "skipped_tests": 0,
   "expected_failures": 0,
-  "github_pr": null,
-  "github_actions_run": null,
-  "external_validation_status": "BLOCKED: GitHub API proxy CONNECT denied with HTTP 403; actual gh pr create exited 1",
-  "human_instructions_after_execution_request_observed": 0,
+  "github_pr": "https://github.com/JinwooJeon1024/agent_workflow_lab/pull/1",
+  "github_actions_run": "https://github.com/JinwooJeon1024/agent_workflow_lab/actions/runs/41200564988",
+  "external_validation_status": "VERIFIED: public Draft PR created; actual pull_request CI passed on GitHub-hosted Ubuntu",
+  "human_instructions_after_execution_request_observed": 3,
   "manual_code_repairs_observed": 0,
-  "configuration_actions_not_visible_to_agent": "unknown; one network-policy application is currently required",
+  "configuration_actions_not_visible_to_agent": "At least one environment publication reported by user; exact UI action count unknown. New environment API access verified.",
   "independent_review": {
     "result": "no blocking findings",
     "separate_context": true,
@@ -31,9 +31,17 @@
     "exit_status": 0,
     "actual_github_actions_execution_verified_by_reviewer": false
   },
-  "draft_pr_creation_attempts": 1,
-  "draft_pr_creation_exit_status": 1,
-  "ci_runs_verified": 0,
+  "draft_pr_creation_attempts": 2,
+  "draft_pr_creation_exit_status": 0,
+  "ci_runs_verified": 1,
   "ci_reruns_requested": 0,
-  "overall_acceptance_status": "INCOMPLETE: no created Draft PR or verified GitHub Actions pass"
+  "overall_acceptance_status": "Controlled experiment completed on recorded CI head; the report update head receives a separate synchronize run, verified in the PR body after push.",
+  "github_actions_head_sha": "27d763df1ab201d640d947a487e79ab0adb7dedd",
+  "github_actions_event": "pull_request",
+  "github_actions_conclusion": "success",
+  "github_actions_job_url": "https://github.com/JinwooJeon1024/agent_workflow_lab/actions/runs/41200564988/job/124535369827",
+  "github_actions_runner_labels": [
+    "ubuntu-latest"
+  ],
+  "github_actions_test_methods_executed": 16
 }
