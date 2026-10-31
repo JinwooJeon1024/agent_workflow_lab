@@ -29,10 +29,26 @@ def coalesce_ranges(values: Iterable[int]) -> list[tuple[int, int]]:
     return ranges
 
 
+def _format_integer(value: int) -> str:
+    """Render an integer without changing Python's global digit limit."""
+    try:
+        return str(value)
+    except ValueError:
+        # Each chunk stays below the interpreter's decimal conversion limit.
+        sign = "-" if value < 0 else ""
+        value = abs(value)
+        chunks = []
+        while value >= 10**9:
+            value, remainder = divmod(value, 10**9)
+            chunks.append(f"{remainder:09d}")
+        return sign + str(value) + "".join(reversed(chunks))
+
+
 def format_ranges(values: Iterable[int]) -> str:
     """Render ranges as comma-separated single integers or start-end pairs."""
     return ",".join(
-        str(start) if start == end else f"{start}-{end}"
+        _format_integer(start) if start == end
+        else f"{_format_integer(start)}-{_format_integer(end)}"
         for start, end in coalesce_ranges(values)
     )
 

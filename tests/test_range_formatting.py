@@ -1,5 +1,6 @@
 """Acceptance tests for the compact range formatting API."""
 
+import sys
 import unittest
 
 from range_summary import format_ranges
@@ -38,6 +39,15 @@ class FormatRangesTests(unittest.TestCase):
         values = OneShot()
         self.assertEqual(format_ranges(values), "2-4")
         self.assertEqual(values.iterations, 1)
+
+    def test_integers_beyond_decimal_conversion_limit(self):
+        big = 10**5000
+        digits = "1" + "0" * 5000
+        next_digits = "1" + "0" * 4999 + "1"
+        original_limit = sys.get_int_max_str_digits()
+        self.assertEqual(format_ranges([-big, big, big + 1]),
+                         f"-{digits},{digits}-{next_digits}")
+        self.assertEqual(sys.get_int_max_str_digits(), original_limit)
 
     def test_input_not_mutated(self):
         values = [3, 1, 2, 2]
