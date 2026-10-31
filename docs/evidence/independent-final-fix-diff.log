@@ -1,0 +1,19 @@
+COMMAND: ["git", "diff", "b06f68f", "a1a32811713f789a8a6907a447a9d3d602e1b4af", "--"]
+CWD: /workspace/agent_workflow_lab
+EXIT STATUS: 0
+STDOUT:
+diff --git a/range_summary.py b/range_summary.py
+index 21e1af1..785eecd 100644
+--- a/range_summary.py
++++ b/range_summary.py
+@@ -20,7 +20,7 @@ def coalesce_ranges(values: Iterable[int]) -> list[tuple[int, int]]:
+     ranges = []
+     start = end = ordered[0]
+     for value in ordered[1:]:
+-        if value == end:
++        if value == end + 1:
+             end = value
+         else:
+             ranges.append((start, end))
+
+STDERR:

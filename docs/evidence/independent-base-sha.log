@@ -1,0 +1,7 @@
+COMMAND: ["git", "rev-parse", "main"]
+CWD: /workspace/agent_workflow_lab
+EXIT STATUS: 0
+STDOUT:
+9f976bef6bd113824e2590778efdf45c5d3078b5
+
+STDERR:

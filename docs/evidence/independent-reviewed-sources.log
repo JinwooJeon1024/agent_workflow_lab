@@ -1,0 +1,245 @@
+FILE: docs/spec.md
+   1 # Spec: coalesce integer ranges
+   2 
+   3 ## Goal
+   4 
+   5 Implement `range_summary.coalesce_ranges(values)` using Python 3.12 and the
+   6 standard library. It accepts a finite iterable of built-in integers and returns
+   7 sorted, maximal, inclusive `(start, end)` tuples covering exactly the distinct
+   8 input values. Adjacent integers belong to one range; gaps remain separate.
+   9 
+  10 Examples:
+  11 
+  12 - `[] -> []`
+  13 - `[3, 1, 2, 2, 6] -> [(1, 3), (6, 6)]`
+  14 - `[0, -2, -1, 4] -> [(-2, 0), (4, 4)]`
+  15 
+  16 Consume an iterable once without mutating the caller's input. Reject booleans,
+  17 floats, strings, and every other non-built-in-integer element with `TypeError`.
+  18 Support arbitrary-size integers. Expected complexity: O(n log n) time, O(n) space.
+  19 
+  20 The CLI `python3 -m range_summary [INTEGER ...]` prints the same ranges as a JSON
+  21 array of two-element arrays, with a trailing newline. No arguments prints `[]`.
+  22 Malformed CLI integers produce argparse's nonzero exit status (2).
+  23 
+  24 ## Executable acceptance criteria
+  25 
+  26 1. `python3 -m unittest discover -s tests -v` runs at least one test and exits 0.
+  27    Cover empty/single/duplicate/unsorted/negative/gapped/consecutive input,
+  28    arbitrary-size integers, one-shot iterables, input preservation, invalid types,
+  29    an exhaustive small input domain, and successful/invalid CLI requests.
+  30 2. `python3 -m range_summary 3 1 2 2 6` exits 0 and prints `[[1, 3], [6, 6]]`.
+  31 3. On `pull_request` events, GitHub Actions executes that same test suite on
+  32    GitHub's standard `ubuntu-latest` runner with Python 3.12, a read-only
+  33    `GITHUB_TOKEN`, no secrets, and no third-party Python dependencies.
+  34 4. Record one deliberately flawed implementation, its real failing test output,
+  35    and a Codex repair with unchanged tests. Allow no more than three repair
+  36    attempts; stop and report if the budget is exhausted. Do not skip tests,
+  37    weaken assertions, or mark the defect as an expected failure.
+  38 5. Review the final code and CI in a separate Codex context that did not implement
+  39    the change; record the reviewed commit, executed checks, and findings.
+  40 6. Create a Draft PR to `main`; retain the actual PR URL, Actions run URL,
+  41    commit SHA, event, conclusion, and job/step results. Until a real run succeeds,
+  42    this experiment is incomplete even if every local test passes.
+  43 
+  44 ## Boundaries and measurement
+  45 
+  46 Use existing Codex and GitHub Actions; do not build a new orchestrator. This run
+  47 is one Codex-directed experiment, not proof of unattended handling of arbitrary
+  48 future specs or automatic Codex execution inside GitHub Actions.
+  49 
+  50 Count repair attempts separately from normal checks. Count human interventions
+  51 as additional human instructions, approvals, configuration actions, or manual
+  52 repairs after the execution request; the request itself is the initial input.
+  53 Report invisible configuration actions as unknown rather than assuming zero.
+  54 Do not change repository permissions/settings, purchase services, merge, deploy,
+  55 or enter credentials. Those operations need human approval. Git pushes and a
+  56 Draft PR for this experiment are part of the requested work.
+
+FILE: range_summary.py
+   1 """Summarize integers as sorted, maximal inclusive ranges."""
+   2 
+   3 import argparse
+   4 from collections.abc import Iterable
+   5 import json
+   6 
+   7 
+   8 def coalesce_ranges(values: Iterable[int]) -> list[tuple[int, int]]:
+   9     """Group distinct built-in integers into consecutive inclusive ranges."""
+  10     unique = set()
+  11     for value in values:
+  12         if type(value) is not int:
+  13             raise TypeError("values must contain only built-in integers")
+  14         unique.add(value)
+  15 
+  16     ordered = sorted(unique)
+  17     if not ordered:
+  18         return []
+  19 
+  20     ranges = []
+  21     start = end = ordered[0]
+  22     for value in ordered[1:]:
+  23         if value == end + 1:
+  24             end = value
+  25         else:
+  26             ranges.append((start, end))
+  27             start = end = value
+  28     ranges.append((start, end))
+  29     return ranges
+  30 
+  31 
+  32 def main() -> None:
+  33     parser = argparse.ArgumentParser(description=__doc__)
+  34     parser.add_argument("values", nargs="*", type=int, help="integers to summarize")
+  35     args = parser.parse_args()
+  36     print(json.dumps(coalesce_ranges(args.values)))
+  37 
+  38 
+  39 if __name__ == "__main__":
+  40     main()
+
+FILE: tests/test_range_summary.py
+   1 """Acceptance tests, frozen before the deliberate defect is repaired."""
+   2 
+   3 import itertools
+   4 import json
+   5 from pathlib import Path
+   6 import subprocess
+   7 import sys
+   8 import unittest
+   9 
+  10 from range_summary import coalesce_ranges
+  11 
+  12 
+  13 ROOT = Path(__file__).resolve().parents[1]
+  14 
+  15 
+  16 class CoalesceRangesTests(unittest.TestCase):
+  17     def test_empty(self):
+  18         self.assertEqual(coalesce_ranges([]), [])
+  19 
+  20     def test_single(self):
+  21         self.assertEqual(coalesce_ranges([7]), [(7, 7)])
+  22 
+  23     def test_duplicates(self):
+  24         self.assertEqual(coalesce_ranges([4, 4, 4]), [(4, 4)])
+  25 
+  26     def test_consecutive(self):
+  27         self.assertEqual(coalesce_ranges([1, 2, 3]), [(1, 3)])
+  28 
+  29     def test_unsorted_and_duplicates(self):
+  30         self.assertEqual(coalesce_ranges([3, 1, 2, 2, 6]), [(1, 3), (6, 6)])
+  31 
+  32     def test_negative_through_zero(self):
+  33         self.assertEqual(coalesce_ranges([0, -2, -1, 4]), [(-2, 0), (4, 4)])
+  34 
+  35     def test_gaps(self):
+  36         self.assertEqual(coalesce_ranges([9, 1, 5]), [(1, 1), (5, 5), (9, 9)])
+  37 
+  38     def test_arbitrary_size_integers(self):
+  39         big = 10**100
+  40         self.assertEqual(coalesce_ranges([big + 1, -big, big]),
+  41                          [(-big, -big), (big, big + 1)])
+  42 
+  43     def test_one_shot_iterable(self):
+  44         self.assertEqual(coalesce_ranges(iter([4, 2, 3])), [(2, 4)])
+  45 
+  46     def test_input_not_mutated(self):
+  47         values = [3, 1, 2, 2]
+  48         before = values.copy()
+  49         coalesce_ranges(values)
+  50         self.assertEqual(values, before)
+  51 
+  52     def test_invalid_elements(self):
+  53         class IntegerSubclass(int):
+  54             pass
+  55 
+  56         for invalid in (True, False, 1.0, "1", None, [], {}, IntegerSubclass(1)):
+  57             with self.subTest(invalid=repr(invalid)):
+  58                 with self.assertRaises(TypeError):
+  59                     coalesce_ranges([1, invalid, 2])
+  60 
+  61     def test_exhaustive_small_domain(self):
+  62         # 1 + 5 + 25 + 125 + 625 = 781 inputs. Check the contract's invariants
+  63         # independently of the grouping implementation.
+  64         for length in range(5):
+  65             for values in itertools.product(range(-2, 3), repeat=length):
+  66                 with self.subTest(values=values):
+  67                     ranges = coalesce_ranges(values)
+  68                     self.assertEqual(
+  69                         [v for start, end in ranges for v in range(start, end + 1)],
+  70                         sorted(set(values)),
+  71                     )
+  72                     self.assertTrue(all(start <= end for start, end in ranges))
+  73                     self.assertTrue(all(
+  74                         left[1] + 1 < right[0]
+  75                         for left, right in zip(ranges, ranges[1:])
+  76                     ))
+  77 
+  78 
+  79 class CLITests(unittest.TestCase):
+  80     def run_cli(self, *values):
+  81         return subprocess.run(
+  82             [sys.executable, "-m", "range_summary", *values],
+  83             cwd=ROOT, capture_output=True, text=True, timeout=10, check=False,
+  84         )
+  85 
+  86     def test_cli_example(self):
+  87         result = self.run_cli("3", "1", "2", "2", "6")
+  88         self.assertEqual(result.returncode, 0, result.stderr)
+  89         self.assertEqual(result.stdout, "[[1, 3], [6, 6]]\n")
+  90         self.assertEqual(result.stderr, "")
+  91 
+  92     def test_cli_empty(self):
+  93         result = self.run_cli()
+  94         self.assertEqual(result.returncode, 0, result.stderr)
+  95         self.assertEqual(json.loads(result.stdout), [])
+  96 
+  97     def test_cli_negatives(self):
+  98         result = self.run_cli("0", "-2", "-1", "4")
+  99         self.assertEqual(result.returncode, 0, result.stderr)
+ 100         self.assertEqual(json.loads(result.stdout), [[-2, 0], [4, 4]])
+ 101 
+ 102     def test_cli_invalid_integer(self):
+ 103         result = self.run_cli("1", "not-an-integer")
+ 104         self.assertEqual(result.returncode, 2)
+ 105         self.assertEqual(result.stdout, "")
+ 106         self.assertIn("invalid int value", result.stderr)
+ 107         self.assertNotIn("Traceback", result.stderr)
+ 108 
+ 109 
+ 110 if __name__ == "__main__":
+ 111     unittest.main()
+
+FILE: .github/workflows/ci.yml
+   1 name: Python CI
+   2 
+   3 on:
+   4   pull_request:
+   5     types: [opened, synchronize, reopened, ready_for_review]
+   6 
+   7 permissions:
+   8   contents: read
+   9 
+  10 jobs:
+  11   tests:
+  12     name: Python 3.12 tests
+  13     runs-on: ubuntu-latest
+  14     timeout-minutes: 5
+  15     steps:
+  16       - name: Check out PR merge commit
+  17         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+  18         with:
+  19           persist-credentials: false
+  20       - name: Set up Python 3.12
+  21         uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+  22         with:
+  23           python-version: '3.12'
+  24       - name: Run all unit and CLI tests
+  25         run: python3 -m unittest discover -s tests -v
+  26       - name: Exercise the documented CLI
+  27         shell: bash
+  28         run: |
+  29           set -euo pipefail
+  30           actual="$(python3 -m range_summary 3 1 2 2 6)"
+  31           test "$actual" = '[[1, 3], [6, 6]]'

@@ -1,0 +1,5 @@
+COMMAND: ["git", "archive", "--format=tar", "a1a32811713f789a8a6907a447a9d3d602e1b4af"]
+CWD: /workspace/agent_workflow_lab
+EXIT STATUS: 0
+ARCHIVE BYTES: 20480
+STDERR:

@@ -1,0 +1,139 @@
+[
+  {
+    "label": "reviewed-sha",
+    "argv": [
+      "git",
+      "rev-parse",
+      "a1a3281"
+    ],
+    "cwd": "/workspace/agent_workflow_lab",
+    "exit_status": 0,
+    "log": "/tmp/agent-workflow-evidence/independent-reviewed-sha.log"
+  },
+  {
+    "label": "base-sha",
+    "argv": [
+      "git",
+      "rev-parse",
+      "main"
+    ],
+    "cwd": "/workspace/agent_workflow_lab",
+    "exit_status": 0,
+    "log": "/tmp/agent-workflow-evidence/independent-base-sha.log"
+  },
+  {
+    "label": "defect-sha",
+    "argv": [
+      "git",
+      "rev-parse",
+      "b06f68f"
+    ],
+    "cwd": "/workspace/agent_workflow_lab",
+    "exit_status": 0,
+    "log": "/tmp/agent-workflow-evidence/independent-defect-sha.log"
+  },
+  {
+    "label": "base-ancestry",
+    "argv": [
+      "git",
+      "merge-base",
+      "--is-ancestor",
+      "main",
+      "a1a32811713f789a8a6907a447a9d3d602e1b4af"
+    ],
+    "cwd": "/workspace/agent_workflow_lab",
+    "exit_status": 0,
+    "log": "/tmp/agent-workflow-evidence/independent-base-ancestry.log"
+  },
+  {
+    "label": "changed-files",
+    "argv": [
+      "git",
+      "diff",
+      "--stat",
+      "main",
+      "a1a32811713f789a8a6907a447a9d3d602e1b4af",
+      "--"
+    ],
+    "cwd": "/workspace/agent_workflow_lab",
+    "exit_status": 0,
+    "log": "/tmp/agent-workflow-evidence/independent-changed-files.log"
+  },
+  {
+    "label": "final-fix-diff",
+    "argv": [
+      "git",
+      "diff",
+      "b06f68f",
+      "a1a32811713f789a8a6907a447a9d3d602e1b4af",
+      "--"
+    ],
+    "cwd": "/workspace/agent_workflow_lab",
+    "exit_status": 0,
+    "log": "/tmp/agent-workflow-evidence/independent-final-fix-diff.log"
+  },
+  {
+    "label": "unchanged-tests",
+    "argv": [
+      "git",
+      "diff",
+      "--exit-code",
+      "b06f68f",
+      "a1a32811713f789a8a6907a447a9d3d602e1b4af",
+      "--",
+      "tests"
+    ],
+    "cwd": "/workspace/agent_workflow_lab",
+    "exit_status": 0,
+    "log": "/tmp/agent-workflow-evidence/independent-unchanged-tests.log"
+  },
+  {
+    "label": "git-archive",
+    "argv": [
+      "git",
+      "archive",
+      "--format=tar",
+      "a1a32811713f789a8a6907a447a9d3d602e1b4af"
+    ],
+    "cwd": "/workspace/agent_workflow_lab",
+    "exit_status": 0,
+    "archive_bytes": 20480,
+    "log": "/tmp/agent-workflow-evidence/independent-git-archive.log"
+  },
+  {
+    "label": "python-version",
+    "argv": [
+      "python3",
+      "--version"
+    ],
+    "cwd": "/tmp/agent-workflow-independent-review",
+    "exit_status": 0,
+    "log": "/tmp/agent-workflow-evidence/independent-python-version.log"
+  },
+  {
+    "label": "unit-tests",
+    "argv": [
+      "python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-v"
+    ],
+    "cwd": "/tmp/agent-workflow-independent-review",
+    "exit_status": 0,
+    "log": "/tmp/agent-workflow-evidence/independent-unit-tests.log",
+    "tests_run": 16
+  },
+  {
+    "label": "functional-checks",
+    "argv": [
+      "python3",
+      "/tmp/agent-workflow-evidence/independent-functional-checks.py"
+    ],
+    "cwd": "/tmp/agent-workflow-independent-review",
+    "exit_status": 0,
+    "log": "/tmp/agent-workflow-evidence/independent-functional-checks.log"
+  }
+]

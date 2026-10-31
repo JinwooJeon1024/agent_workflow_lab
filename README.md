@@ -14,7 +14,10 @@ python3 -m range_summary 3 1 2 2 6
 
 - Contract and measurable completion criteria: [Spec](docs/spec.md).
 - CI: [pull_request workflow](.github/workflows/ci.yml), standard Ubuntu runner.
-- Execution evidence and independent review will be recorded under `docs/`.
+- [Execution report and command results](docs/execution-report.md).
+- [Independent review](docs/evidence/independent-review.md).
+- Local success does not establish a successful remote CI run; see the report
+  for actual external validation status and blockers.
 
 This is one supervised Codex execution, not a new orchestration framework or
 an autonomous agent running inside GitHub Actions. CI runs the tests; Codex

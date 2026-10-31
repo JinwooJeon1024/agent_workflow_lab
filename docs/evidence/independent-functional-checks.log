@@ -1,0 +1,40 @@
+COMMAND: ["python3", "/tmp/agent-workflow-evidence/independent-functional-checks.py"]
+CWD: /tmp/agent-workflow-independent-review
+EXIT STATUS: 0
+STDOUT:
+Exhaustive distinct subsets over -5..5: 2048 passed
+Deterministic randomized sequences, duplicates, gaps and negatives: 1000 passed
+API with 10001-digit positive and negative integers: passed
+Custom iterable allowing exactly one traversal: passed
+Invalid API element types: 11 passed
+COMMAND: ["/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3", "-m", "range_summary"]
+EXIT STATUS: 0
+STDOUT: '[]\n'
+STDERR: ''
+COMMAND: ["/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3", "-m", "range_summary", "3", "1", "2", "2", "6"]
+EXIT STATUS: 0
+STDOUT: '[[1, 3], [6, 6]]\n'
+STDERR: ''
+COMMAND: ["/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3", "-m", "range_summary", "-10", "-8", "-9", "0", "0", "+2"]
+EXIT STATUS: 0
+STDOUT: '[[-10, -8], [0, 0], [2, 2]]\n'
+STDERR: ''
+COMMAND: ["/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3", "-m", "range_summary", "--", "-1", "0", "1"]
+EXIT STATUS: 0
+STDOUT: '[[-1, 1]]\n'
+STDERR: ''
+COMMAND: ["/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3", "-m", "range_summary", "1.5"]
+EXIT STATUS: 2
+STDOUT: ''
+STDERR: "usage: range_summary.py [-h] [values ...]\nrange_summary.py: error: argument values: invalid int value: '1.5'\n"
+COMMAND: ["/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3", "-m", "range_summary", "1", "not-an-integer"]
+EXIT STATUS: 2
+STDOUT: ''
+STDERR: "usage: range_summary.py [-h] [values ...]\nrange_summary.py: error: argument values: invalid int value: 'not-an-integer'\n"
+COMMAND: ["/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3", "-m", "range_summary", "10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000", "10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001"]
+EXIT STATUS: 0
+STDOUT: '[[10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000, 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001]]\n'
+STDERR: ''
+INDEPENDENT RESULTS: 3050 valid API cases + 11 invalid-type cases + 7 CLI subprocess cases passed
+
+STDERR:
