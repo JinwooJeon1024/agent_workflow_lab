@@ -29,6 +29,14 @@ def coalesce_ranges(values: Iterable[int]) -> list[tuple[int, int]]:
     return ranges
 
 
+def format_ranges(values: Iterable[int]) -> str:
+    """Render ranges as comma-separated single integers or start-end pairs."""
+    return ",".join(
+        str(start) if start == end else f"{start}-{end}"
+        for start, end in coalesce_ranges(values)
+    )
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("values", nargs="*", type=int, help="integers to summarize")
