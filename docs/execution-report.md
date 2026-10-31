@@ -4,8 +4,9 @@
 
 **Local implementation, real failure, bounded repair, and tests verified.**
 The end-to-end goal also requires a real Draft PR and a successful GitHub Actions
-run. Those must not be inferred from local results. External results and the
-independent review are recorded below as they become available.
+run. Those must not be inferred from local results. **End-to-end acceptance remains incomplete**: the attempted Draft PR creation
+was blocked by GitHub API egress policy; no Actions success has been verified.
+Independent review completed successfully in a separate Codex context.
 
 ## Scope and command evidence
 
@@ -77,7 +78,27 @@ This does not apply the policy or publish the environment. The tool reported
 publish the environment for that configuration workflow. No repository or token
 permissions were changed.
 
-Draft PR and actual Actions result: pending external access. No PR URL, run URL,
+The actual Draft PR command was executed once after the reviewed code and
+evidence were pushed:
+
+```sh
+gh pr create --repo JinwooJeon1024/agent_workflow_lab \
+  --base main --head codex/minimal-dev-loop --draft \
+  --title "Validate a minimal Codex development loop with Python tests" \
+  --body-file /tmp/agent-workflow-evidence/draft-pr-body.md
+```
+
+Result: **exit 1**, `Post "https://api.github.com/graphql": Forbidden`.
+The command's exit status was preserved through `tee` with `PIPESTATUS[0]`.
+[Original creation error](evidence/pr-create.log) and the
+[prepared PR body](draft-pr-body.md) are retained. There was no successful PR
+creation response. The command has not been retried without a policy change.
+
+The standard retry budget remains at one code repair out of three. There were
+no CI reruns, merge, or deployment. CI run inspection was not possible without
+a PR and API access.
+
+Draft PR and actual Actions result: **blocked, not complete**. No PR URL, run URL,
 remote CI success, GitHub approval, or branch-protection enforcement is claimed.
 The workflow uses ordinary `pull_request`, not `pull_request_target`; untrusted
 PR code runs with a read-only token and without application secrets. Neither
@@ -102,3 +123,18 @@ one initial human input, not a subsequent intervention.
 This experiment demonstrates the specific local seeded-defect repair only.
 It does not yet demonstrate the requested full development loop or an unattended
 system that handles future tasks without a Codex session.
+
+## Resume after the required external change
+
+After the saved API-domain policy has been applied, verify the specific operation
+again with `gh api repos/JinwooJeon1024/agent_workflow_lab`. Reuse existing injected
+authentication. If this reaches GitHub but fails authorization, diagnose the
+response before requesting a credential or permission. Do not print tokens.
+
+Then use the exact draft command above, with the durable body path
+`docs/draft-pr-body.md` if `/tmp` was not retained. Before retrying creation, check
+for an existing PR for this head/base so a lost response cannot create duplicates.
+Once a PR exists, use `gh pr checks` / `gh run view` to verify the real
+`pull_request` run, its head SHA, conclusion, jobs, steps, and executed test count.
+Do not label a queued/pending/skipped run as passed. Record the actual URLs and
+results here and in the Draft PR. Never merge or deploy as part of this task.

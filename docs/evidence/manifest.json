@@ -16,7 +16,7 @@
   "expected_failures": 0,
   "github_pr": null,
   "github_actions_run": null,
-  "external_validation_status": "pending: GitHub API proxy CONNECT denied with HTTP 403",
+  "external_validation_status": "BLOCKED: GitHub API proxy CONNECT denied with HTTP 403; actual gh pr create exited 1",
   "human_instructions_after_execution_request_observed": 0,
   "manual_code_repairs_observed": 0,
   "configuration_actions_not_visible_to_agent": "unknown; one network-policy application is currently required",
@@ -30,5 +30,10 @@
     "cli_cases": 7,
     "exit_status": 0,
     "actual_github_actions_execution_verified_by_reviewer": false
-  }
+  },
+  "draft_pr_creation_attempts": 1,
+  "draft_pr_creation_exit_status": 1,
+  "ci_runs_verified": 0,
+  "ci_reruns_requested": 0,
+  "overall_acceptance_status": "INCOMPLETE: no created Draft PR or verified GitHub Actions pass"
 }
