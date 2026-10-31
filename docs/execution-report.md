@@ -135,3 +135,117 @@ This validates one bounded seeded-defect loop with human environment setup.
 It does not prove zero-human end-to-end automation for arbitrary future specs,
 and no agent is running inside Actions: GitHub Actions executes tests; Codex
 performs the development and review work in its existing execution contexts.
+
+## Local·Cloud 병렬 개발 및 통합 실험 — 2026-11-01
+
+**독립 개발한 두 변경의 Git 통합, 실제 테스트·PR CI와 별도 문맥의 코드 리뷰를 완료했다.**
+두 작업의 실행 시점은 겹쳤다고 입증할 수 없어 병렬 속도 향상은 주장하지 않는다.
+이 절은 위의 이전 실험과 별도로 기록하며 기존 테스트·CI와 이 보고서를 재사용한다.
+
+| 담당 | 공통 기준 SHA | 결과 브랜치 | 원본 결과 SHA |
+| --- | --- | --- | --- |
+| Local | `72b655ab542f1e8e552b26306a67b4bb099aad31` | `codex/local-range-format` | `783cee0ad715be5a483c7063158938f48b8fcc6e` |
+| Cloud | 동일 | `codex/cloud-range-stats` | `f07210cdfd7f85edbb445a03bf0b874fb91e9b8b` |
+| 통합 | 동일 | `codex/parallel-local-cloud` | 코드 SHA `024a8caa9b3f817608bc516021c2a2578ecdb2a4` |
+
+작업 전과 통합 직전에 `origin/main`을 실제 fetch했고 공통 기준 SHA와 일치했다.
+시작 시 작업 트리는 깨끗했다. Cloud 원본의 단일 부모도 기준 SHA와 일치한다.
+
+### 분리한 작업과 Acceptance Criteria
+
+- Local 담당: `range_summary.py`, `tests/test_range_formatting.py`.
+  `format_ranges(values: Iterable[int]) -> str`가 기존 `coalesce_ranges()`를 재사용한다.
+  빈 입력은 빈 문자열, `[3,1,2,2,6]`은 `1-3,6`, `[-3,-2,-1,2]`는 `-3--1,2`다.
+  단일값은 정수 문자열, 범위는 `start-end`, 구분자는 공백 없는 쉼표다.
+- Cloud 담당: `range_summary_stats.py`, `tests/test_range_stats.py`.
+  `summarize_ranges(values: Iterable[int]) -> dict[str, int]`가 기존 함수를 import해 재사용한다.
+  반환 키는 `value_count`(중복 제외 정수 개수), `range_count`(최대 연속 범위 개수)뿐이다.
+  빈 입력은 0/0, `[3,1,2,2,6]`과 `[0,-2,-1,4]`는 4/2다. 범위를 직접 열거하지 않는다.
+- 공통: 정렬·중복 제거, 단일값·음수·큰 정수, 한 번만 소비하는 iterable, 입력 보존,
+  built-in int 이외 원소의 TypeError 계약을 검증한다. 기존 API·CLI·테스트·CI 계약을 유지한다.
+- Cloud의 복사 가능한 전체 지시문은 [Local Draft PR #3](https://github.com/JinwooJeon1024/agent_workflow_lab/pull/3)에 보존했다.
+  두 작업의 변경 파일은 겹치지 않으며 새 프레임워크·의존성·문서는 추가하지 않았다.
+
+### Git 통합과 실제 테스트
+
+초기 Local 구현 `124ff116479d8f82d2e388739bafdcb9bc69d8f8`과 보고서 초안은 통합 준비 브랜치에 이미 있었다.
+독립 리뷰가 Python의 십진수 변환 제한을 넘는 `10**5000`에서 실패하는 P2를 발견했다.
+Local 수정 1회로 전역 설정을 바꾸지 않는 chunk 변환과 회귀 테스트를 추가했다.
+
+사용자의 명시 승인 후 다음 명령을 실행했다. 두 명령 모두 exit 0이며 `-x`로 원본 SHA를 보존했다.
+
+```text
+git switch codex/parallel-local-cloud
+git cherry-pick -x 783cee0ad715be5a483c7063158938f48b8fcc6e
+git cherry-pick -x f07210cdfd7f85edbb445a03bf0b874fb91e9b8b
+```
+
+적용된 Local 수정 SHA는 `a5a72f1bc540ee7718b7ed49bca78b65079fd07d`,
+Cloud 적용 및 통합 코드 SHA는 `024a8caa9b3f817608bc516021c2a2578ecdb2a4`다.
+각 담당 파일은 원본 Local/Cloud 결과와 `git diff --exit-code`로 정확히 일치함을 확인했다.
+
+| 대상 | 실제 검증 | 결과 |
+| --- | --- | --- |
+| 기준 | `python3 -m unittest discover -s tests -v` | 16개, exit 0 |
+| Local 원본 | `python3 -m unittest discover -s tests -p test_range_formatting.py -v`; 전체 suite | 9개 / 25개, exit 0 |
+| Cloud 원본의 정확한 archive | `python3 -m unittest discover -s tests -p test_range_stats.py -v`; 전체 suite | 15개 / 31개, exit 0 |
+| 통합 코드 SHA | `python3 -m unittest discover -s tests -v` | 40개, exit 0 (Python 3.12.1) |
+| 통합 CLI | `python3 -m range_summary 3 1 2 2 6` | `[[1, 3], [6, 6]]`, exit 0 |
+| 두 API smoke | 같은 프로세스에서 `1-3,6`과 `{"value_count": 4, "range_count": 2}` 확인 | exit 0 |
+| 범위·보존 | `git diff --check`; 기존 테스트·CI에 대한 `git diff --exit-code` | exit 0 |
+
+Cloud의 첫 로컬 스냅샷 검사에서는 Windows 임시 short path로의 디렉터리 이동이 실패해
+유효 테스트를 실행하지 못했다. 이를 성공으로 집계하지 않았고 workspace의 ignored 임시
+스냅샷에서 위의 15개/31개를 실제 재실행했다. 제품 코드 수정은 필요하지 않았다.
+
+### 실제 GitHub Actions와 독립 리뷰
+
+- 통합 결과: [Draft PR #4](https://github.com/JinwooJeon1024/agent_workflow_lab/pull/4), base `main`.
+- [통합 코드 CI run 41215224814](https://github.com/JinwooJeon1024/agent_workflow_lab/actions/runs/41215224814):
+  `pull_request`, head `024a8caa9b3f817608bc516021c2a2578ecdb2a4`,
+  attempt 1, `completed/success`.
+- [job 124578241031](https://github.com/JinwooJeon1024/agent_workflow_lab/actions/runs/41215224814/job/124578241031):
+  표준 GitHub-hosted Ubuntu, CPython 3.12.15, 읽기 전용 Contents 권한.
+  모든 step 성공이며 실제 로그의 `Ran 40 tests`, `OK`와 CLI assertion 성공을 확인했다.
+  run 생성~완료 기록은 00:31:06~00:31:15 KST, 9초다.
+- [Local 단독 CI run 41213172054](https://github.com/JinwooJeon1024/agent_workflow_lab/actions/runs/41213172054)는
+  Local SHA의 25개 테스트 성공이다. Cloud 원본 브랜치에는 별도 PR CI가 없었으며,
+  Local CI를 통합 CI의 증거로 대신하지 않았다.
+- 구현 대화가 없는 새 Codex 문맥이 정확한 통합 코드 SHA의 archive를 검토했다.
+  전체 40개 테스트와 독립 테스트 7개가 통과했다. 8,192개 부분집합·중복·역순 입력,
+  seeded 무작위 1,000개, `±10**5000`, 엄격한 타입·one-shot·입력 보존·함수 재사용·CLI 계약,
+  십진수 제한 640에서 전역 설정 변경 금지와 초대형 끝점 산술을 확인했다.
+- 리뷰 결과: **발견사항 없음(P0–P3 0건)**. Local/Cloud 담당 파일의 원본 바이트 일치,
+  기존 테스트·CI 바이트 불변과 `coalesce_ranges`·`main` AST 불변도 확인했다.
+  archive SHA256: `635ae8c51e26bbdaaec885883260cb80bf9221426fdb20850b7e5b2d26cee375`.
+- 원본 Local/Cloud도 각각 독립 리뷰를 통과했다. 새 문맥의 독립 실행은 로컬 archive 검증이며,
+  원격 CI run/job/log는 주 작업 문맥에서 직접 조회했다.
+- 이후 이 보고서만 갱신하는 커밋은 구현·테스트·CI와 분리한다.
+  **최종 PR head SHA와 해당 최신 CI는 PR #4 본문에 기록한다.** 별도 GitHub 계정의 승인을 뜻하지 않는다.
+
+### 사람 개입·대기·충돌 측정과 한계
+
+- 관측 시작: 2026-11-01 00:00:28 KST (2026-10-31 15:00:28 UTC).
+- 최초 요청 1회는 초기 입력으로 분리한다. 관측된 추가 사용자 메시지는 **3회**:
+  Cloud 수동 실행 방식 지정, Cloud 완료 알림, 통합 cherry-pick 승인.
+  승인 1회는 이 3회 안에 포함되며 중복 합산하지 않는다.
+- Cloud에 별도 지시·수동 실행 **1회 이상**은 사용자 보고로 확인했다.
+  정확한 추가 지시/UI 행동 수, Cloud 내부 수동 코드 수정 여부는 알 수 없어 0으로 가정하지 않는다.
+  Local에서 관측된 사람의 수동 코드 수정은 0회다.
+- 환경 확인 대기 관측 구간: 00:01:48~00:05:39 KST, 약 **3분 51초**.
+  CLI에 `All Environments (Global)`만 보인 뒤 사용자 지시에 따라 조회·연동 탐색을 중단했다.
+  Cloud Task는 사용자가 웹에서 수동 시작했다. 직접 생성 자동화는 별도 후속 과제다.
+- 수동 방식 전환 확인(00:05:39)부터 Cloud 원격 결과 확인(00:21:13)까지 경과는 **15분 34초**다.
+  사람 작업·Cloud 실행·통신 대기가 섞여 순수 대기 시간을 분리할 수 없다.
+  Cloud 커밋 시각 00:19:43은 실제 작업 시작·완료 시각으로 간주하지 않는다.
+- 통합 승인 대기 관측 구간: 00:23:23~00:29:58 KST, 약 **6분 35초**.
+  최초 자동 승인 검토가 cherry-pick을 사용자의 병합 승인 조건으로 거부해 실행되지 않았다.
+  이후 사용자가 두 cherry-pick을 명시 승인한 뒤 진행했으며 거부를 우회하지 않았다.
+- 실제 통합 구간: 00:30:11.878~00:30:12.158 KST.
+  두 cherry-pick의 stopwatch 처리 시간 **151ms**, 충돌 **0건**, 충돌 해결 시간 **0초**다.
+- Local 코드 완료 후 Cloud 수동 실행으로 전환했으므로 실제 동시 개발을 입증하지 못했다.
+  이번 결과는 파일·브랜치를 분리한 독립 개발과 통합 검증이며, 병렬 속도 향상이나 무인 자동화를 증명하지 않는다.
+- 리뷰에 따른 Local 수정 1회, Cloud/통합 코드 수정 0회, 실패 CI 수동 재실행 0회다.
+  보고서 갱신 push의 synchronize CI는 새 head의 정상 검증이며 실패 job 재실행이 아니다.
+- 환경 생성·게시, 인증·권한·설정 변경, 배포, main 병합은 에이전트가 수행하지 않았다.
+  통합 PR은 Draft로 유지하며 main 병합은 별도 사용자 승인 대상이다.
